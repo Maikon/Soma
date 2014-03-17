@@ -1,0 +1,2 @@
+class BloodTest < MedicalTest
+end
