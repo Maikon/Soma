@@ -1,7 +1,8 @@
 Soma::Application.routes.draw do
+  get "blood_tests/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  get 'blood-tests/new' => 'blood_tests#new', as: :new_blood_test
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
