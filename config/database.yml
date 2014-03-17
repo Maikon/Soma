@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Soma_development
+  database: soma_development
   pool: 5
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,13 +44,13 @@ development:
 test: &test
   adapter: postgresql
   encoding: unicode
-  database: Soma_test
+  database: soma_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: Soma_production
+  database: soma_production
   pool: 5
 
 cucumber:

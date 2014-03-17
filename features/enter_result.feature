@@ -5,4 +5,5 @@ Feature: Entering Results
 
 Scenario: Entering blood test results
   Given I am on the blood test entry page
-  Then I want to be able to enter my results
+  When I enter the results
+  Then I want to be able to see those results
