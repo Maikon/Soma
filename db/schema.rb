@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317163338) do
+ActiveRecord::Schema.define(version: 20140317175228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20140317163338) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "hb"
+    t.float    "mcv"
+    t.float    "wbc"
+    t.float    "platelets"
+    t.float    "neutrophils"
+    t.float    "lymphocytes"
+    t.float    "alt"
+    t.float    "alk_phos"
+    t.float    "creatinine"
+    t.float    "esr"
+    t.string   "crp"
   end
 
 end
