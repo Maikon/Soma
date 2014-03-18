@@ -55,5 +55,14 @@ describe BloodTest do
       expect(test).not_to have_healthy_neutrophils
     end
 
+    it 'should know if Lymphocytes is within range' do
+      test.lymphocytes = 1.1
+      expect(test).to have_healthy_lymphocytes
+    end
+
+    it 'should know if Lymphocytes is out of range' do
+      test.lymphocytes = 4.9
+      expect(test).not_to have_healthy_lymphocytes
+    end
   end
 end

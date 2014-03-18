@@ -18,4 +18,8 @@ class BloodTest < MedicalTest
   def has_healthy_neutrophils?
     neutrophils >= 2.5 && neutrophils <= 7.5
   end
+
+  def has_healthy_lymphocytes?
+    lymphocytes >= 1.0 && lymphocytes <= 4.8
+  end
 end
