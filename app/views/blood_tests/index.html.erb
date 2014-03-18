@@ -1,35 +1,20 @@
 <table>
   <thead>
     <tr>
-      <th>Taken on</th>
-      <th>Hb</th>
-      <th>MCV</th>
-      <th>WBC</th>
-      <th>Platelets</th>
-      <th>Neutrophils</th>
-      <th>Lymphocytes</th>
-      <th>ALT</th>
-      <th>Alk Phos</th>
-      <th>Creatinine</th>
-      <th>ESR</th>
-      <th>CRP</th>
+      <% headers.each do |header| %>
+        <th><%= header %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-  <% @blood_tests.each do |test| %>
+  <% @blood_tests.each do |blood_test| %>
     <tr>
-      <td><%= test.taken_on %></td>
-      <td><%= test.hb %></td>
-      <td><%= test.mcv %></td>
-      <td><%= test.wbc %></td>
-      <td><%= test.platelets %></td>
-      <td><%= test.neutrophils %></td>
-      <td><%= test.lymphocytes %></td>
-      <td><%= test.alt %></td>
-      <td><%= test.alk_phos %></td>
-      <td><%= test.creatinine %></td>
-      <td><%= test.esr %></td>
-      <td><%= test.crp %></td>
+      <td><%= blood_test.taken_on %></td>
+      <% methods.each do |method| %>
+        <td <%= class_for(blood_test, method) %>>
+          <%= value_for(blood_test, method) %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

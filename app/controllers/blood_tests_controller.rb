@@ -4,12 +4,17 @@ class BloodTestsController < ApplicationController
   end
 
   def create
-    @blood_test = BloodTest.create(blood_test_params)
-    redirect_to blood_tests_path
+    blood_test = BloodTest.new(blood_test_params)
+    if blood_test.save
+      redirect_to blood_tests_path
+    else
+      flash[:errors] = blood_test.error_messages
+      redirect_to new_blood_test_path
+    end
   end
 
   def index
-    @blood_tests = BloodTest.all
+    @blood_tests = BloodTest.order('taken_on DESC')
   end
 
   private
