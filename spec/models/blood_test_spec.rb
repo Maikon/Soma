@@ -94,5 +94,15 @@ describe BloodTest do
       test.creatinine = 99
       expect(test).not_to have_healthy_creatinine
     end
+
+    it 'should know if Esr is within range' do
+      test.esr = 26
+      expect(test).to have_healthy_esr
+    end
+
+    it 'should know if Esr is out of range' do
+      test.esr = 27
+      expect(test).not_to have_healthy_esr
+    end
   end
 end

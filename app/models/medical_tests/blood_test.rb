@@ -1,5 +1,6 @@
 class BloodTest < MedicalTest
   def has_healthy_hb?
+    # this varies between ladies and men
     hb >= 12 && hb <= 16
   end
 
@@ -32,6 +33,12 @@ class BloodTest < MedicalTest
   end
 
   def has_healthy_creatinine?
+    # this varies between ladies and men
     creatinine >= 50 && creatinine <= 98
+  end
+
+  def has_healthy_esr?
+    # age is a factor (age + 10) / 2 for ladies
+    esr >= 0 && esr <= 26
   end
 end
