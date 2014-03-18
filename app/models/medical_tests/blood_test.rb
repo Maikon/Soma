@@ -22,4 +22,8 @@ class BloodTest < MedicalTest
   def has_healthy_lymphocytes?
     lymphocytes >= 1.0 && lymphocytes <= 4.8
   end
+
+  def has_healthy_alt?
+    alt >= 10 && alt <= 40
+  end
 end

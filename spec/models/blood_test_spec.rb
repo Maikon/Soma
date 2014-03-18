@@ -64,5 +64,15 @@ describe BloodTest do
       test.lymphocytes = 4.9
       expect(test).not_to have_healthy_lymphocytes
     end
+
+    it 'should know if Alt is within range' do
+      test.alt = 11
+      expect(test).to have_healthy_alt
+    end
+
+    it 'should know if Alt is out of range' do
+      test.alt = 41
+      expect(test).not_to have_healthy_alt
+    end
   end
 end
