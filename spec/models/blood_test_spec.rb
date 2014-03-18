@@ -24,5 +24,15 @@ describe BloodTest do
       test.mcv = 70
       expect(test).not_to have_healthy_mcv
     end
+
+    it 'should know if WBC is within range' do
+      test.wbc = 5
+      expect(test).to have_healthy_wbc
+    end
+
+    it 'should know if WBC is out of range' do
+      test.wbc = 12
+      expect(test).not_to have_healthy_wbc
+    end
   end
 end

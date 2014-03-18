@@ -6,4 +6,8 @@ class BloodTest < MedicalTest
   def has_healthy_mcv?
     mcv >= 80 && mcv <= 100
   end
+
+  def has_healthy_wbc?
+    wbc >= 4 && wbc <= 11
+  end
 end
