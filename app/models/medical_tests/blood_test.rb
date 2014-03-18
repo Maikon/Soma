@@ -1,4 +1,6 @@
 class BloodTest < MedicalTest
+  validates_uniqueness_of :taken_on
+
   def has_healthy_hb?
     # this varies between ladies and men
     hb >= 12 && hb <= 16
@@ -49,6 +51,12 @@ class BloodTest < MedicalTest
       crp.to_f <= 5
     else
       false
+    end
+  end
+
+  def error_messages
+    errors.inject([]) do |array, (attr, message)|
+      array << message
     end
   end
 end

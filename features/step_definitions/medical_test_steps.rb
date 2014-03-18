@@ -47,7 +47,19 @@ Then(/^I should see those results in chronological order$/) do
   last = page.all(:xpath, '//tr').last
   expect(first).to have_content('2014-01-01')
   expect(last).to have_content('2012-01-01')
+end
 
+When(/^I enter two sets of results with the same date$/) do
+  enter_blood('01/01/2014')
+  enter_blood('01/01/2014')
+end
+
+Then(/^I should see an error message$/) do
+  expect(page).to have_content("You already gave me test results for this day")
+end
+
+Then(/^I should be on the blood test entry page$/) do
+  expect(current_path).to eq(new_blood_test_path)
 end
 
 def enter_blood(date)

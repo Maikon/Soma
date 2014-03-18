@@ -115,4 +115,9 @@ describe BloodTest do
       expect(test).not_to have_healthy_crp
     end
   end
+
+  it "should be able to return nicely formatted messages" do
+    expect(test).to receive(:errors).and_return(key: "error")
+    expect(test.error_messages).to eq(["error"])
+  end
 end
