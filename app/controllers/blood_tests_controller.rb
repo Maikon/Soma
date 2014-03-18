@@ -9,8 +9,7 @@ class BloodTestsController < ApplicationController
   end
 
   def index
-    @blood_tests = BloodTest.all
-    methods
+    @blood_tests = BloodTest.order('taken_on DESC')
   end
 
   private

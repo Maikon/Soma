@@ -31,3 +31,38 @@ end
 Then(/^I want to see which tests are within range$/) do
   expect(page).to have_css('.no-danger', text: '13')
 end
+
+Given(/^I have submitted more than one set of results$/) do
+  enter_blood('01/01/2013')
+  enter_blood('01/01/2012')
+  enter_blood('01/01/2014')
+end
+
+When(/^I am on the blood test results page$/) do
+  visit blood_tests_path
+end
+
+Then(/^I should see those results in chronological order$/) do
+  first = page.all(:xpath, '//tr/td').first
+  last = page.all(:xpath, '//tr').last
+  expect(first).to have_content('2014-01-01')
+  expect(last).to have_content('2012-01-01')
+
+end
+
+def enter_blood(date)
+  visit new_blood_test_path
+  fill_in 'blood_test[taken_on]', with: date
+  fill_in 'blood_test[hb]', with: '13'
+  fill_in 'blood_test[mcv]', with: '88'
+  fill_in 'blood_test[wbc]', with: '7.0'
+  fill_in 'blood_test[platelets]', with: '278'
+  fill_in 'blood_test[neutrophils]', with: '4.4'
+  fill_in 'blood_test[lymphocytes]', with: '2.2'
+  fill_in 'blood_test[alt]', with: '103'
+  fill_in 'blood_test[alk_phos]', with: '67'
+  fill_in 'blood_test[creatinine]', with: '50'
+  fill_in 'blood_test[esr]', with: '9'
+  fill_in 'blood_test[crp]', with: '<5'
+  click_button 'submit'
+end
