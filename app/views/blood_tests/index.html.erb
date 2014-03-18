@@ -25,7 +25,7 @@
       <td><%= test.platelets %></td>
       <td><%= test.neutrophils %></td>
       <td><%= test.lymphocytes %></td>
-      <td><%= test.alt %></td>
+      <td <%= "class=danger" unless test.has_healthy_alt? %>><%= test.alt %></td>
       <td><%= test.alk_phos %></td>
       <td><%= test.creatinine %></td>
       <td><%= test.esr %></td>

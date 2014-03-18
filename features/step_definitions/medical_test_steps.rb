@@ -25,5 +25,5 @@ Then(/^I want to be able to see those results$/) do
 end
 
 Then(/^I want to see which tests are out of range$/) do
-  expect(page).to have_css('.unhealthy', text: '103')
+  expect(page).to have_css('.danger', text: '103')
 end
