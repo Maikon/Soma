@@ -43,11 +43,12 @@ class BloodTest < MedicalTest
   end
 
   def has_healthy_crp?
-    if crp =~ /^<5$/
+    if crp =~ /^<(?:5|4|3|2|1)$/
       true
+    elsif crp =~ /^\d+$/
+      crp.to_f <= 5
     else
       false
     end
-      # crp >= 0 && crp <= 5
   end
 end

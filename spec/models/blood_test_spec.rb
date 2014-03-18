@@ -111,7 +111,7 @@ describe BloodTest do
     end
 
     it 'should know if Crp is out of range' do
-      test.crp = 'herro'
+      test.crp = '6'
       expect(test).not_to have_healthy_crp
     end
   end
