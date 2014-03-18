@@ -104,5 +104,15 @@ describe BloodTest do
       test.esr = 27
       expect(test).not_to have_healthy_esr
     end
+
+    it 'should know if Crp is within range' do
+      test.crp = '<5'
+      expect(test).to have_healthy_crp
+    end
+
+    it 'should know if Crp is out of range' do
+      test.crp = 'herro'
+      expect(test).not_to have_healthy_crp
+    end
   end
 end

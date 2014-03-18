@@ -41,4 +41,13 @@ class BloodTest < MedicalTest
     # age is a factor (age + 10) / 2 for ladies
     esr >= 0 && esr <= 26
   end
+
+  def has_healthy_crp?
+    if crp =~ /^<5$/
+      true
+    else
+      false
+    end
+      # crp >= 0 && crp <= 5
+  end
 end
