@@ -10,4 +10,9 @@ class BloodTest < MedicalTest
   def has_healthy_wbc?
     wbc >= 4 && wbc <= 11
   end
+
+  def has_healthy_platelets?
+    platelets >= 140 && platelets <= 440
+  end
+
 end

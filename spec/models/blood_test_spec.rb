@@ -34,5 +34,15 @@ describe BloodTest do
       test.wbc = 12
       expect(test).not_to have_healthy_wbc
     end
+
+    it 'should know if Platelets is within range' do
+      test.platelets = 141
+      expect(test).to have_healthy_platelets
+    end
+
+    it 'should know if Platelets is out of range' do
+      test.platelets = 139
+      expect(test).not_to have_healthy_platelets
+    end
   end
 end
