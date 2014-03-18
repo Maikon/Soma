@@ -26,4 +26,8 @@ class BloodTest < MedicalTest
   def has_healthy_alt?
     alt >= 10 && alt <= 40
   end
+
+  def has_healthy_alk_phos?
+    alk_phos >= 44 && alk_phos <= 147
+  end
 end

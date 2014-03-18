@@ -74,5 +74,15 @@ describe BloodTest do
       test.alt = 41
       expect(test).not_to have_healthy_alt
     end
+
+    it 'should know if Alk Phos is within range' do
+      test.alk_phos = 44
+      expect(test).to have_healthy_alk_phos
+    end
+
+    it 'should know if Alk Phos is out of range' do
+      test.alk_phos = 148
+      expect(test).not_to have_healthy_alk_phos
+    end
   end
 end
