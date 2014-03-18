@@ -10,6 +10,7 @@ class BloodTestsController < ApplicationController
 
   def index
     @blood_tests = BloodTest.all
+    methods
   end
 
   private

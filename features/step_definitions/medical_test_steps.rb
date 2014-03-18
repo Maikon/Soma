@@ -27,3 +27,7 @@ end
 Then(/^I want to see which tests are out of range$/) do
   expect(page).to have_css('.danger', text: '103')
 end
+
+Then(/^I want to see which tests are within range$/) do
+  expect(page).to have_css('.no-danger', text: '13')
+end

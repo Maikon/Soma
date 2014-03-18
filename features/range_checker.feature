@@ -8,8 +8,7 @@ Scenario: Highlight out of range results
   When I enter the results
   Then I want to see which tests are out of range
 
-@wip
-Scenario: Highlight out of range results
+Scenario: Highlight results within range
   Given I am on the blood test entry page
   When I enter the results
-  Then I want to see which tests are out of range
+  Then I want to see which tests are within range
