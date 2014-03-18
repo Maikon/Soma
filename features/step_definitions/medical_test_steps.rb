@@ -10,7 +10,7 @@ When(/^I enter the results$/) do
   fill_in 'blood_test[platelets]', with: '278'
   fill_in 'blood_test[neutrophils]', with: '4.4'
   fill_in 'blood_test[lymphocytes]', with: '2.2'
-  fill_in 'blood_test[alt]', with: '12'
+  fill_in 'blood_test[alt]', with: '103'
   fill_in 'blood_test[alk_phos]', with: '67'
   fill_in 'blood_test[creatinine]', with: '50'
   fill_in 'blood_test[esr]', with: '9'
@@ -19,7 +19,11 @@ When(/^I enter the results$/) do
 end
 
 Then(/^I want to be able to see those results$/) do
-  ['Taken on', '2014-01-01', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '12', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
+  ['Taken on', '2014-01-01', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
     expect(page).to have_content(string)
   end
+end
+
+Then(/^I want to see which tests are out of range$/) do
+  expect(page).to have_css('.unhealthy', text: '103')
 end
