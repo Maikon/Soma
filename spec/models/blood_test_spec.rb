@@ -44,5 +44,16 @@ describe BloodTest do
       test.platelets = 139
       expect(test).not_to have_healthy_platelets
     end
+
+    it 'should know if Neutrophils is within range' do
+      test.neutrophils = 2.6
+      expect(test).to have_healthy_neutrophils
+    end
+
+    it 'should know if Neutrophils is out of range' do
+      test.neutrophils = 7.6
+      expect(test).not_to have_healthy_neutrophils
+    end
+
   end
 end

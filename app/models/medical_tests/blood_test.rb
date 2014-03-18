@@ -15,4 +15,7 @@ class BloodTest < MedicalTest
     platelets >= 140 && platelets <= 440
   end
 
+  def has_healthy_neutrophils?
+    neutrophils >= 2.5 && neutrophils <= 7.5
+  end
 end
