@@ -4,6 +4,10 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'helvetica', sans-serif;
+}
 form {
   width: 500px;
 
@@ -27,5 +31,15 @@ table {
   td, th {
     border: 1px solid #000;
     padding: .25em;
+  }
+
+  td.danger {
+    background-color: #b00000;
+    color: #fff;
+  }
+
+  td.no-danger {
+    background-color: #00b000;
+    color: #fff;
   }
 }
