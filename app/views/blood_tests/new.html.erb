@@ -2,10 +2,9 @@
 <%= form_for @blood_test do |form| %>
   <%= form.label 'taken_on' %>
   <%= form.date_field :taken_on %>
-
   <%= form.label :hb, 'Hb' %>
-  <%= form.number_field :hb %> 
-  <%= form.label :mcv, 'MCV' %> 
+  <%= form.number_field :hb %>
+  <%= form.label :mcv, 'MCV' %>
   <%= form.number_field :mcv %>
   <%= form.label :wbc, 'WBC' %>
   <%= form.number_field :wbc %>
