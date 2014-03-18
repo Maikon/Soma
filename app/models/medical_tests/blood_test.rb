@@ -30,4 +30,8 @@ class BloodTest < MedicalTest
   def has_healthy_alk_phos?
     alk_phos >= 44 && alk_phos <= 147
   end
+
+  def has_healthy_creatinine?
+    creatinine >= 50 && creatinine <= 98
+  end
 end

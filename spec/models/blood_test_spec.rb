@@ -84,5 +84,15 @@ describe BloodTest do
       test.alk_phos = 148
       expect(test).not_to have_healthy_alk_phos
     end
+
+    it 'should know if Creatinine is within range' do
+      test.creatinine = 50
+      expect(test).to have_healthy_creatinine
+    end
+
+    it 'should know if Creatinine is out of range' do
+      test.creatinine = 99
+      expect(test).not_to have_healthy_creatinine
+    end
   end
 end
