@@ -1,0 +1,45 @@
+// Place all the styles related to the BloodTests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'helvetica', sans-serif;
+}
+form {
+  width: 500px;
+
+  input {
+    width: 50%;
+    // margin-right: 20%;
+    display: inline-block;
+  }
+
+  label {
+    width: 40%;
+    // margin-right: 10%;
+    display: inline-block;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+
+  td, th {
+    border: 1px solid #000;
+    padding: .25em;
+  }
+
+  td.danger {
+    background-color: #b00000;
+    color: #fff;
+  }
+
+  td.no-danger {
+    background-color: #00b000;
+    color: #fff;
+  }
+}

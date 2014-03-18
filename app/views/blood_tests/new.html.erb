@@ -1,0 +1,29 @@
+<h1>New Blood Test</h1>
+<%= form_for @blood_test do |form| %>
+  <%= form.label 'taken_on' %>
+  <%= form.date_field :taken_on %>
+  <%= form.label :hb, 'Hb' %>
+  <%= form.number_field :hb, step: 0.1 %>
+  <%= form.label :mcv, 'MCV' %>
+  <%= form.number_field :mcv, step: 0.1 %>
+  <%= form.label :wbc, 'WBC' %>
+  <%= form.number_field :wbc, step: 0.1 %>
+  <%= form.label :platelets, 'Platelets' %>
+  <%= form.number_field :platelets, step: 0.1 %>
+  <%= form.label :neutrophils, 'Neutrophils' %>
+  <%= form.number_field :neutrophils, step: 0.1 %>
+  <%= form.label :lymphocytes, 'Lymphocytes' %>
+  <%= form.number_field :lymphocytes, step: 0.1 %>
+  <%= form.label :alt, 'ALT' %>
+  <%= form.number_field :alt, step: 0.1 %>
+  <%= form.label :alk_phos, 'Alk Phos' %>
+  <%= form.number_field :alk_phos, step: 0.1 %>
+  <%= form.label :creatinine, 'Creatinine' %>
+  <%= form.number_field :creatinine, step: 0.1 %>
+  <%= form.label :esr, 'ESR' %>
+  <%= form.number_field :esr, step: 0.1 %>
+  <%= form.label :crp, 'CRP' %>
+  <%= form.text_field :crp %>
+
+  <%= form.submit 'submit' %>
+<% end %>

@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <% headers.each do |header| %>
+        <th><%= header %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% @blood_tests.each do |blood_test| %>
+    <tr>
+      <td><%= blood_test.taken_on %></td>
+      <% methods.each do |method| %>
+        <td <%= class_for(blood_test, method) %>>
+          <%= value_for(blood_test, method) %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
