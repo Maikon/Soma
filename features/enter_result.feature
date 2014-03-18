@@ -13,3 +13,7 @@ Scenario: With the same date
   When I enter two sets of results with the same date
   Then I should be on the blood test entry page
   And I should see an error message
+
+Scenario: With nil values
+  When I enter a set of result that includes an empty value
+  Then there should be blank cells in the table
