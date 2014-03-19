@@ -1,5 +1,5 @@
 class BloodTest < MedicalTest
-  validates_uniqueness_of :taken_on
+  validates :taken_on, presence: true, uniqueness: true
 
   def has_healthy_hb?
     # this varies between ladies and men
