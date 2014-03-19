@@ -1,4 +1,4 @@
-Given(/^I visit the site for the first time$/) do
+Given(/^I visit the homepage$/) do
   visit root_path
 end
 
@@ -10,4 +10,8 @@ end
 Then(/^I can go to my existing results$/) do
   click_link "See blood test results table"
   expect(current_path).to eq(blood_tests_path)
+end
+
+Then(/^I should see a graph$/) do
+  expect(page).to have_css('svg')
 end
