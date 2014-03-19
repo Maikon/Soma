@@ -5,15 +5,10 @@
 @import 'variables';
 @import 'mixins';
 
-form {
+form.main-content {
   width: 23em;
   margin: 1em auto;
-  background-color: #fefefe;
-  text-align: center;
-  padding-top: 2em;
-  padding-bottom: 1px;
-  @include border-radius(5px);
-  @include box-shadow(0, 0, 2px, rgba(51, 51, 51, 0.25));
+  padding: 2em 0 1px;
 
   input {
     width: 50%;
@@ -61,19 +56,22 @@ form {
 table {
   border-collapse: collapse;
   text-align: center;
+  display: inline-block;
 
   td, th {
-    border: 1px solid #000;
-    padding: .25em;
+    padding: .5em;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    @include border-radius(7px);
   }
 
   td.danger {
-    background-color: #b00000;
+    background-color: rgba(176, 0, 0, 0.75);
     color: #fff;
   }
 
   td.no-danger {
-    background-color: #00b000;
+    background-color: rgba(0, 176, 0, 0.74);
     color: #fff;
   }
 }
