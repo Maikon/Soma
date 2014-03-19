@@ -6,6 +6,7 @@ Soma::Application.routes.draw do
   post 'blood-tests' => 'blood_tests#create'
   get 'blood-tests/:id/edit' => 'blood_tests#edit', as: :edit_blood_test
   patch 'blood-tests/:id' => 'blood_tests#update', as: :update_blood_test
+  get 'blood-tests/hb'=> 'blood_tests#hb'
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
 

@@ -25,6 +25,14 @@ class BloodTestsController < ApplicationController
 
   def index
     @blood_tests = BloodTest.order('taken_on DESC')
+    respond_to do |format|
+      format.html
+      format.json { render json: @blood_tests.to_json }
+    end
+  end
+
+  def hb
+    render json: BloodTest.hemoglobin_levels_over_time_as_json
   end
 
   private

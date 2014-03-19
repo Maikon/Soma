@@ -10,7 +10,7 @@
   <a href="/">SOMA</a> |
   <a href= "/blood-tests/new">Enter new blood test results</a> |
   <a href= "/blood-tests">See blood test results table</a>
-  </header>
+</header>
 <body>
   <% if flash[:errors] && !flash[:errors].empty? %>
     <ul>
@@ -20,6 +20,9 @@
     </ul>
   <% end %>
   <%= flash[:notice]%>
+
   <%= yield %>
+
+
 </body>
 </html>
