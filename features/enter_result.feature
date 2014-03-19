@@ -15,7 +15,7 @@ Scenario: With the same date
   And I should see "You already gave me test results for this day"
 
 Scenario: With nil values
-  When I enter a set of result that includes an empty value
+  When I enter a set of results that includes an empty value
   Then there should be blank cells in the table
 
 Scenario: With empty date

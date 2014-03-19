@@ -13,6 +13,10 @@ class BloodTestsController < ApplicationController
     end
   end
 
+  def edit
+    
+  end
+
   def index
     @blood_tests = BloodTest.order('taken_on DESC')
   end

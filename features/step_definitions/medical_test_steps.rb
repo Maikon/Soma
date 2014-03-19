@@ -18,7 +18,7 @@ When(/^I enter the results$/) do
   click_button 'submit'
 end
 
-When(/^I enter a set of result that includes an empty value$/) do
+When(/^I (?:enter|have entered) a set of results(?:| that includes an empty value)$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
   fill_in 'blood_test[hb]', with: '13'
@@ -33,6 +33,10 @@ When(/^I enter a set of result that includes an empty value$/) do
   fill_in 'blood_test[esr]', with: '9'
   fill_in 'blood_test[crp]', with: '<5'
   click_button 'submit'
+end
+
+When(/^I click "(.*?)"$/) do |link|
+  click_link link
 end
 
 Then(/^I want to be able to see those results$/) do
@@ -77,6 +81,10 @@ end
 
 Then(/^I should be on the blood test entry page$/) do
   expect(current_path).to eq(new_blood_test_path)
+end
+
+Then(/^I should be on the edit page for that blood test$/) do
+  expect(current_path).to eq(edit_blood_test_path(BloodTest.find_by_hb(13).id))
 end
 
 Then(/^there should be blank cells in the table$/) do
