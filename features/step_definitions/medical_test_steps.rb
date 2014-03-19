@@ -35,6 +35,13 @@ When(/^I (?:enter|have entered) a set of results(?:| that includes an empty valu
   click_button 'submit'
 end
 
+When(/^fill up the edit form$/) do
+  fill_in 'blood_test[hb]', with: '20'
+  fill_in 'blood_test[esr]', with: '19'
+  fill_in 'blood_test[alk_phos]', with: '67'
+  click_button 'submit'
+end
+
 When(/^I click "(.*?)"$/) do |link|
   click_link link
 end
@@ -86,6 +93,13 @@ end
 Then(/^I should be on the edit page for that blood test$/) do
   expect(current_path).to eq(edit_blood_test_path(BloodTest.find_by_hb(13).id))
 end
+
+Then(/^I should see my changes$/) do
+  ['Taken on', '01 Jan 2014', 'Hb', '20', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '19', 'CRP', '<5'].each do |string|
+    expect(page).to have_content(string)
+  end
+end
+
 
 Then(/^there should be blank cells in the table$/) do
   expect(page).to have_css('.empty-value', text: '')

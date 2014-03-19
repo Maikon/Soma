@@ -14,7 +14,13 @@ class BloodTestsController < ApplicationController
   end
 
   def edit
-    
+    @blood_test = BloodTest.find(params[:id])
+  end
+
+  def update
+    @blood_test = BloodTest.find(params[:id])
+    @blood_test.update_attributes(blood_test_params)
+    redirect_to blood_tests_path
   end
 
   def index

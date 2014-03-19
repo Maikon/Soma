@@ -6,4 +6,6 @@ Feature: Editing a blood test
   Scenario: From the blood tests page
     Given I have entered a set of results
     When I click "Edit"
-    Then I should be on the edit page for that blood test
+    And fill up the edit form
+    Then I am on the blood test results page
+    And I should see my changes
