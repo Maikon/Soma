@@ -36,7 +36,7 @@ When(/^I enter a set of result that includes an empty value$/) do
 end
 
 Then(/^I want to be able to see those results$/) do
-  ['Taken on', '2014-01-01', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
+  ['Taken on', '01 Jan 2014', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
     expect(page).to have_content(string)
   end
 end
@@ -62,8 +62,8 @@ end
 Then(/^I should see those results in chronological order$/) do
   first = page.all(:xpath, '//tr/td').first
   last = page.all(:xpath, '//tr').last
-  expect(first).to have_content('2014-01-01')
-  expect(last).to have_content('2012-01-01')
+  expect(first).to have_content('01 Jan 2014')
+  expect(last).to have_content('01 Jan 2012')
 end
 
 When(/^I enter two sets of results with the same date$/) do

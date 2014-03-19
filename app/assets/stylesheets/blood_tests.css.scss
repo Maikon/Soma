@@ -1,25 +1,54 @@
 // Place all the styles related to the BloodTests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-* {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'helvetica', sans-serif;
-}
-form {
-  width: 500px;
+@import 'variables';
+@import 'mixins';
+
+form.main-content {
+  width: 23em;
+  margin: 1em auto;
+  padding: 2em 0 1px;
 
   input {
     width: 50%;
-    // margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
     display: inline-block;
+
+    &[type=number], &[type=text], &[type=date] {
+      border: 1px solid rgba(14, 163, 208, 0.35);
+      font-size: 1em;
+      @include border-radius(3px);
+      padding: 0.2em;
+
+      &:focus {
+        outline: none;
+        border: 1px solid rgb(14, 163, 208);
+      }
+    }
+
+    &[type=submit] {
+      font-size: 1em;
+      margin: 2em auto;
+      display: block;
+      border: none;
+      background-color: $submit-color;
+      color: #fff;
+      width: auto;
+      padding: 0.5em 2em;
+      @include border-radius(5px);
+
+      &:hover {
+        cursor: pointer;
+        background-color: lighten($submit-color, 5%);
+      }
+    }
   }
 
   label {
-    width: 40%;
-    // margin-right: 10%;
+    width: 30%;
+    text-align: right;
     display: inline-block;
   }
 }
@@ -27,19 +56,22 @@ form {
 table {
   border-collapse: collapse;
   text-align: center;
+  display: inline-block;
 
   td, th {
-    border: 1px solid #000;
-    padding: .25em;
+    padding: .5em;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    @include border-radius(7px);
   }
 
   td.danger {
-    background-color: #b00000;
+    background-color: rgba(176, 0, 0, 0.75);
     color: #fff;
   }
 
   td.no-danger {
-    background-color: #00b000;
+    background-color: rgba(0, 176, 0, 0.74);
     color: #fff;
   }
 }
