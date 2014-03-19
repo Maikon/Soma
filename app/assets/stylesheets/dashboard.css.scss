@@ -1,1 +1,16 @@
 
+.axis path, .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+path.safe {
+    stroke:none;
+    fill:rgba(0, 217, 50, 0.4);
+}
+path.dataline {
+    stroke:red;
+    fill:none;
+}
+

@@ -1,7 +1,13 @@
 class BloodTest < MedicalTest
   validates :taken_on, presence: true, uniqueness: true
 
-  def has_healthy_hb?
+  def self.hemoglobin_levels_over_time_as_json
+    order('taken_on DESC').map do |test| 
+      { date: test.taken_on, result: test.hb } 
+    end.to_json
+  end
+
+   def has_healthy_hb?
     # this varies between ladies and men
     hb >= 12 && hb <= 16
   end

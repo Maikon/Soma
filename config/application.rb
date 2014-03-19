@@ -28,3 +28,4 @@ module Soma
     config.autoload_paths += %W(#{config.root}/app/models/medical_tests)
   end
 end
+require 'blood_probe'

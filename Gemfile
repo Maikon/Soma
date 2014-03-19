@@ -38,6 +38,7 @@ group :development do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'guard'
+  gem 'poltergeist'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

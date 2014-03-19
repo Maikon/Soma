@@ -1,0 +1,125 @@
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>    
+
+<script type="text/javascript">
+// Set the dimensions of the canvas / graph
+
+var ourData = [{"id":3,"taken_on":"2013-04-08","created_at":"2014-03-19T14:34:08.599Z","updated_at":"2014-03-19T14:34:08.599Z","hb":13.0,"mcv":89.0,"wbc":7.4,"platelets":301.0,"neutrophils":5.0,"lymphocytes":1.9,"alt":14.0,"alk_phos":null,"creatinine":55.0,"esr":8.0,"crp":"\u003C5"},{"id":2,"taken_on":"2013-03-25","created_at":"2014-03-19T14:33:00.894Z","updated_at":"2014-03-19T14:33:00.894Z","hb":12.3,"mcv":88.0,"wbc":8.0,"platelets":314.0,"neutrophils":5.5,"lymphocytes":1.8,"alt":12.0,"alk_phos":null,"creatinine":57.0,"esr":null,"crp":""},{"id":1,"taken_on":"2013-03-11","created_at":"2014-03-19T14:29:34.800Z","updated_at":"2014-03-19T14:30:52.983Z","hb":12.7,"mcv":88.0,"wbc":7.0,"platelets":278.0,"neutrophils":4.4,"lymphocytes":2.0,"alt":12.0,"alk_phos":null,"creatinine":50.0,"esr":9.0,"crp":"\u003C5"}];
+
+var newData = [];
+
+for(var i=0; i < ourData.length; i++) {
+  newData.unshift({'date': ourData[i].taken_on, 'result': ourData[i].hb});
+}
+
+console.log(newData);
+
+var margin = {
+    top: 20,
+    right: 50,
+    bottom: 30,
+    left: 50
+},
+width = 600 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
+
+// Parse the date / time
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+
+// Set the ranges
+var x = d3.time.scale()
+    .range([0, width]);
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+// Define the axes
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    .ticks(ourData.length);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+// Define the value line path generator
+var line = d3.svg.line()
+    .x(function (d) {
+    return x(d.date);
+})
+    .y(function (d) {
+    return y(d.result);
+});
+
+// Define the area path generator
+var area = d3.svg.area()
+    .x(function (d) {
+    return x(d.date);
+})
+    .y0(function (d) {
+    return y(d.min);
+})
+    .y1(function (d) {
+    return y(d.max);
+});
+
+// Adds the svg canvas
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var data = newData;
+
+var maxLimit = 16;
+var minLimit = 11.5;
+
+
+data.forEach(function (d) {
+    d.date = parseDate(d.date);
+    d.result = +d.result;
+    d.min = minLimit;
+    d.max = maxLimit;
+
+});
+
+
+// Scale the range of the data
+x.domain([data[0].date, data[data.length - 1].date]);
+y.domain([minLimit - 2, d3.max(data, function (d) {
+    return d.result + 2;
+})]);
+
+// Add the background area showing the historic range
+svg.append("path")
+    .datum(data)
+    .attr("class", "safe")
+    .attr("d", area);
+
+// Add the value line 
+svg.append("path")
+    .datum(data)
+    .attr("class", "dataline")
+    .attr("d", line);
+
+// Add the X Axis
+svg.append("g") // Add the X Axis
+.attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+
+// Add the Y Axis
+svg.append("g") // Add the Y Axis
+.attr("class", "y axis")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("g/L");
+
+</script>
+
