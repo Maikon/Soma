@@ -1,5 +1,5 @@
 <h1>New Blood Test</h1>
-<%= form_for @blood_test do |form| %>
+<%= form_for @blood_test, html: {class: 'main-content'} do |form| %>
   <%= form.label 'taken_on' %>
   <%= form.date_field :taken_on %>
   <%= form.label :hb, 'Hb' %>
