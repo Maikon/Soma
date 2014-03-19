@@ -1,25 +1,59 @@
 // Place all the styles related to the BloodTests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-* {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'helvetica', sans-serif;
-}
+@import 'variables';
+@import 'mixins';
+
 form {
-  width: 500px;
+  width: 23em;
+  margin: 1em auto;
+  background-color: #fefefe;
+  text-align: center;
+  padding-top: 2em;
+  padding-bottom: 1px;
+  @include border-radius(5px);
+  @include box-shadow(0, 0, 2px, rgba(51, 51, 51, 0.25));
 
   input {
     width: 50%;
-    // margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
     display: inline-block;
+
+    &[type=number], &[type=text], &[type=date] {
+      border: 1px solid rgba(14, 163, 208, 0.35);
+      font-size: 1em;
+      @include border-radius(3px);
+      padding: 0.2em;
+
+      &:focus {
+        outline: none;
+        border: 1px solid rgb(14, 163, 208);
+      }
+    }
+
+    &[type=submit] {
+      font-size: 1em;
+      margin: 2em auto;
+      display: block;
+      border: none;
+      background-color: $submit-color;
+      color: #fff;
+      width: auto;
+      padding: 0.5em 2em;
+      @include border-radius(5px);
+
+      &:hover {
+        cursor: pointer;
+        background-color: lighten($submit-color, 5%);
+      }
+    }
   }
 
   label {
-    width: 40%;
-    // margin-right: 10%;
+    width: 30%;
+    text-align: right;
     display: inline-block;
   }
 }
