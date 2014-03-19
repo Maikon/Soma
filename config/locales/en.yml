@@ -27,4 +27,5 @@ en:
         blood_test:
           attributes:
             taken_on:
-              taken: "You already gave me test results for this day"
+              taken: "You already gave me test results for this day."
+              blank: "Sorry! Date can't be blank."

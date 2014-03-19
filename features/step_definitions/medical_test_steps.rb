@@ -71,8 +71,8 @@ When(/^I enter two sets of results with the same date$/) do
   enter_blood('01/01/2014')
 end
 
-Then(/^I should see an error message$/) do
-  expect(page).to have_content("You already gave me test results for this day")
+When(/^I don't enter a date$/) do
+  enter_blood('')
 end
 
 Then(/^I should be on the blood test entry page$/) do
@@ -81,6 +81,10 @@ end
 
 Then(/^there should be blank cells in the table$/) do
   expect(page).to have_css('.empty-value', text: '')
+end
+
+Then(/^I should see "(.*?)"$/) do |message|
+  expect(page).to have_content(message)
 end
 
 def enter_blood(date)

@@ -5,7 +5,7 @@ Soma::Application.routes.draw do
   get 'blood-tests/new' => 'blood_tests#new', as: :new_blood_test
   post 'blood-tests' => 'blood_tests#create'
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
