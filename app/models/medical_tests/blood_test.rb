@@ -3,8 +3,14 @@ class BloodTest < MedicalTest
 
   def self.as_json(method)
     order('taken_on ASC').map do |test| 
-      { date: test.taken_on, result: test.send(method.to_sym) } 
-    end.reject { |test| test[:result].nil? }.to_json
+      if method == "crp"
+          old_result = test.send(method.to_sym)
+          new_result = old_result.gsub("<","").to_f if !old_result.empty?
+          { date: test.taken_on, result: new_result}
+        else
+          { date: test.taken_on, result: test.send(method.to_sym)}
+      end
+    end.reject { |test| test[:result].nil?|| test[:result]==''}.to_json
   end
 
   #  def has_healthy_hb?
