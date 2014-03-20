@@ -43,3 +43,20 @@ body > header {
   margin: 0 auto;
   padding: 1em 1em 1.5em;
 }
+
+.bar-chart {
+  height: 1em;
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  margin-left: 4em;
+}
+
+.bar-chart div {
+  height: 100%;
+  width: 0;
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+}
