@@ -3,6 +3,7 @@ Given(/^I am on the blood test entry page$/) do
 end
 
 When(/^I enter the results$/) do
+  visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
   fill_in 'blood_test[hb]', with: '13'
   fill_in 'blood_test[mcv]', with: '88'

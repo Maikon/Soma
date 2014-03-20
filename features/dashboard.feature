@@ -4,7 +4,7 @@ As a health tracker
 I want to see a homepage
 
 Background:
-  Given I have entered a set of results
+  Given I enter the results
 
 Scenario: Homepage navigation
   Given I visit the homepage
