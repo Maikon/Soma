@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 request = new XMLHttpRequest();
-request.open('GET', '/blood-tests/results/hb', false);
+request.open('GET', "/blood-tests/results/<%=blood_name%>", false);
 request.send(null);
 var data = JSON.parse(request.responseText);
 
@@ -64,8 +64,8 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var maxLimit = <%= BloodProbe::HEMOGLOBIN_RANGE.last %>;
-var minLimit = <%= BloodProbe::HEMOGLOBIN_RANGE.first %>;
+var maxLimit = <%= blood_range.last %>;
+var minLimit = <%= blood_range.first %>;
 
 
 data.forEach(function (d) {

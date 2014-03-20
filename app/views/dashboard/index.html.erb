@@ -1,3 +1,5 @@
 <h1>SOMA</h1>
 
-<%= render "graphs", locals: {blood_tests: @blood_tests} %>
+<% blood_name_and_ranges.each_pair do |key, value| %>
+  <%= render "graphs", blood_name: key, blood_range: value %>
+<% end %>
