@@ -6,23 +6,9 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<header>
-  <a href="/">SOMA</a> |
-  <a href= "/blood-tests/new">Enter new blood test results</a> |
-  <a href= "/blood-tests">See blood test results table</a>
-</header>
+  <%= render 'layouts/header' %>
 <body>
-  <% if flash[:errors] && !flash[:errors].empty? %>
-    <ul>
-      <% flash[:errors].each do |error|%>
-        <li class 'flash error'><%= error %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <%= flash[:notice]%>
-
+  <%= render 'layouts/flash_messages' %>
   <%= yield %>
-
-
 </body>
 </html>
