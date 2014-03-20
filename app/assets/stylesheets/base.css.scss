@@ -50,6 +50,23 @@ body > header {
   display: inline-block;
   position: relative;
   margin-left: 4em;
+
+  .bar-popup {
+    display: none;
+    width: auto;
+    position: absolute;
+    right: -1.7em;
+    top: -2.54em;
+    background-color: rgba(176, 0, 0, 0.4);
+    color: #fff;
+    font-size: 0.65em;
+    padding: 0.25em 0.5em;
+    @include border-radius(5px);
+  }
+
+  &:hover .bar-popup {
+    display: block;
+  }
 }
 
 .bar-chart div {
