@@ -6,7 +6,7 @@
 // console.log(newData);
 
 request = new XMLHttpRequest();
-request.open('GET', '/blood-tests/hb', false);
+request.open('GET', '/blood-tests/results/hb', false);
 request.send(null);
 var newData = JSON.parse(request.responseText);
 console.log(newData);
