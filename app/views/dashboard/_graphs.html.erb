@@ -3,13 +3,10 @@
 <script type="text/javascript">
 // Set the dimensions of the canvas / graph
 
-// console.log(newData);
-
 request = new XMLHttpRequest();
 request.open('GET', '/blood-tests/hb', false);
 request.send(null);
 var newData = JSON.parse(request.responseText);
-console.log(newData);
 
 var margin = {
     top: 20,
