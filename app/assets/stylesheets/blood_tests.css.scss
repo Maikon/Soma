@@ -64,6 +64,10 @@ table {
     border-bottom: 2px solid #fff;
     @include border-radius(7px);
   }
+  
+  th {
+    font-weight: bold;
+  }
 
   td.danger {
     background-color: rgba(176, 0, 0, 0.75);
@@ -89,7 +93,7 @@ table {
       
       h1 {
         margin: 0;
-        font-size: 1.3em;
+        font-size: 1.5em;
       }
     }
     
@@ -105,6 +109,15 @@ table {
       width: 30%;
       display: inline-block;
       text-align: center;
+    }
+    
+    ul {
+      padding: 1em;
+      
+      li {
+        font-size: 1.1em;
+        padding: 0.5em;
+      }
     }
   }
 }
