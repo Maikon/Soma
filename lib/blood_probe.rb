@@ -1,5 +1,4 @@
 class BloodProbe < Struct.new(:blood_test)
-
   HEMOGLOBIN_RANGE                      = 11.5..16
   MEAN_CELL_VOLUME_RANGE                = 80..100
   WHITE_BLOOD_CELLS_RANGE               = 4..11
@@ -12,7 +11,6 @@ class BloodProbe < Struct.new(:blood_test)
   ERYTHROCYTE_SEDIMENTATION_RATE_RANGE  = 0..26
   C_REACTIVE_PROTEIN_RANGE              = 0..6
 
-  
   HEMOGLOBIN_TEST               = ->(test) { HEMOGLOBIN_RANGE.include? test.hb                 }
   MEAN_CELL_VOLUME_TEST         = ->(test) { MEAN_CELL_VOLUME_RANGE.include? test.mcv          }
   WHITE_BLOOD_CELLS_TEST        = ->(test) { WHITE_BLOOD_CELLS_RANGE.include? test.wbc         }
@@ -36,7 +34,7 @@ class BloodProbe < Struct.new(:blood_test)
     alkaline_phosphatase:           ALKALINE_PHOSPHATASE_RANGE,
     creatinine:                     CREATININE_RANGE,
     erythrocyte_sedimentation_rate: ERYTHROCYTE_SEDIMENTATION_RATE_RANGE,
-    c_reactive_protein:             C_REACTIVE_PROTEIN_RANGE 
+    c_reactive_protein:             C_REACTIVE_PROTEIN_RANGE
   }
 
   METHODS = {
@@ -53,9 +51,7 @@ class BloodProbe < Struct.new(:blood_test)
     crp: C_REACTIVE_PROTEIN_TEST, c_reactive_protein: C_REACTIVE_PROTEIN_TEST
   }
 
-  def within_range? method
+  def within_range?(method)
     METHODS[method].call(blood_test)
   end
-
-
 end

@@ -1,7 +1,7 @@
 Feature: Dashboard
 In order to track all the information about my health in one place
 As a health tracker
-I want to see a homepage 
+I want to see a homepage
 
 Scenario: Homepage navigation
   Given I visit the homepage
