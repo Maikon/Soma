@@ -35,6 +35,11 @@ body > header {
   margin-top: 1em;
 }
 
+sup {
+  font-size: 0.75em;
+  vertical-align: super;
+}
+
 .main-content {
   background-color: #fefefe;
   text-align: center;
@@ -76,4 +81,11 @@ body > header {
   position: absolute;
   top: 1px;
   left: 0;
+}
+
+.ui-widget-content {
+  border: none;
+  background: none;
+  background-color: #fefefe;
+  width: 900px;
 }
