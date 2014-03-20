@@ -51,6 +51,7 @@ When(/^I click "(.*?)"$/) do |link|
 end
 
 Then(/^I want to be able to see those results$/) do
+  visit blood_tests_path
   ['Taken on', '01 Jan 2014', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
     expect(page).to have_content(string)
   end
