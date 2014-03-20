@@ -11,6 +11,20 @@ class BloodProbe < Struct.new(:blood_test)
   ERYTHROCYTE_SEDIMENTATION_RATE_RANGE  = 0..26
   C_REACTIVE_PROTEIN_RANGE              = 0..5
 
+  nine = "<sup>9</sup>"
+  # To use this: <%= BloodProbe::WHITE_BLOOD_CELLS_UNIT.html_safe  %>
+  HEMOGLOBIN_UNIT                      = "g/L"
+  MEAN_CELL_VOLUME_UNIT                = "fL"
+  WHITE_BLOOD_CELLS_UNIT               = "x10"+nine+"/L"
+  PLATELETS_UNIT                       = "x10"+nine+"/L"
+  NEUTROPHILS_UNIT                     = "x10"+nine+"/L"
+  LYMPHOCYTES_UNIT                     = "x10"+nine+"/L"
+  ALANINE_AMINOTRANSFERASE_UNIT        = "µkat/L"
+  ALKALINE_PHOSPHATASE_UNIT            = "U/L"
+  CREATININE_UNIT                      = "μmol/L"
+  ERYTHROCYTE_SEDIMENTATION_RATE_UNIT  = "mm/hr"
+  C_REACTIVE_PROTEIN_UNIT              = "mg/L"
+
   HEMOGLOBIN_TEST               = ->(test) { HEMOGLOBIN_RANGE.include? test.hb                 }
   MEAN_CELL_VOLUME_TEST         = ->(test) { MEAN_CELL_VOLUME_RANGE.include? test.mcv          }
   WHITE_BLOOD_CELLS_TEST        = ->(test) { WHITE_BLOOD_CELLS_RANGE.include? test.wbc         }
