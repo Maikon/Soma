@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.tabs
 //= require_tree .
+
+$(function(){
+  $('#tabs').tabs();
+});

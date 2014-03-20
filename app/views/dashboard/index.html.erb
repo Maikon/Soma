@@ -1,4 +1,16 @@
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <h1>SOMA</h1>
-<% blood_name_and_ranges.each_pair do |key, value| %>
-  <%= render "graphs", blood_name: key, blood_range: value %>
-<% end %>
+
+<div id="tabs">
+  <ul>
+  <% blood_name_and_ranges.each_pair do |key, value| %>
+    <li><a href="#<%= key %>"><%= key %></a></li>
+  <% end %>
+  </ul>
+  <% blood_name_and_ranges.each_pair do |key, value| %>
+    <div id="<%= key %>">
+      <p><%= render "graphs", blood_name: key, blood_range: value %></p>
+    </div>
+  <% end %>
+</div>
+
