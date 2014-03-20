@@ -6,7 +6,7 @@ describe BloodProbe do
       hb: 12.7, mcv: 88.0, 
       wbc: 7.0, platelets: 278.0, neutrophils: 4.4, 
       lymphocytes: 2.0, alt: 12.0, alk_phos: 45, 
-      creatinine: 50.0, esr: 9.0, crp: 5)
+      creatinine: 50.0, esr: 9.0, crp: '5')
   end
 
   let(:probe) { BloodProbe.new(blood_test) }
@@ -135,7 +135,7 @@ describe BloodProbe do
     end
 
     it 'c-reactive protein out of range' do
-      blood_test.crp= 8
+      blood_test.crp = 8
       expect(probe.within_range?(:c_reactive_protein)).to be_false
     end
 
