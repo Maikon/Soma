@@ -1,7 +1,9 @@
 <h1>Blood test for <%= @blood_test.taken_on.strftime("%d %b %Y") %></h1>
-<article class="main-content">
+<article class="main-content blood-test-report">
   <section class="danger">
-    <h1>Results Out of Range</h1>
+    <header>
+      <h1>Results Out of Range</h1>
+    </header>
     <% methods.each do |method| %>
       <% unless @probe.within_range?(method.to_sym) %>
         <p><%= method %> <%= @blood_test.send(method.to_sym) %></p>
@@ -9,7 +11,9 @@
     <% end %>
   </section>
   <section class="no-danger">
-    <h1>Results In Range</h1>
+    <header>
+      <h1>Results In Range</h1>
+    </header>
     <% methods.each do |method| %>
       <% if @probe.within_range?(method.to_sym) %>
         <p><%= method %> <%= @blood_test.send(method.to_sym) %></p>
