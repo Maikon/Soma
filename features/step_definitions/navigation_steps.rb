@@ -3,7 +3,7 @@ Given(/^I visit the homepage$/) do
 end
 
 Given(/^I visit the JSON page for "(.*?)"$/) do |link|
-  visit "blood-tests/results/#{link}"
+  visit "/blood-tests/results/#{link}"
 end
 
 Then(/^I should see JSON data$/) do

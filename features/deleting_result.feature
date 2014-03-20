@@ -4,6 +4,7 @@ Feature: Deleting a blood test
 
   Scenario: From the blood tests edit page
     Given I have entered a set of results
-    When I click "Edit"
+    When I am on the blood test results page
+    And I click "Edit"
     And I delete the given test
     Then I should not see that set of data on the page
