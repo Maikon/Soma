@@ -1,3 +1,5 @@
+require 'blood_probe'
+
 module BloodTestsHelper
   def headers
     ["Taken on",
@@ -32,7 +34,8 @@ module BloodTestsHelper
 
   def class_for(test, method)
     return "class=empty-value" if has_empty_value?(test, method)
-    if test.send("has_healthy_#{method}?".to_sym)
+    probe = BloodProbe.new(test)
+    if probe.within_range? method.to_sym
       "class=no-danger"
     else
       "class=danger"
