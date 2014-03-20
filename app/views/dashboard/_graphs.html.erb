@@ -1,5 +1,3 @@
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>    
-
 <script type="text/javascript">
 request = new XMLHttpRequest();
 request.open('GET', "/blood-tests/results/<%=blood_name%>", false);
@@ -58,9 +56,10 @@ var area = d3.svg.area()
 });
 
 // Adds the svg canvas
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#<%= blood_name %>").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr("class", "<%= blood_name %>")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -79,7 +78,7 @@ data.forEach(function (d) {
 // Scale the range of the data
 x.domain([data[0].date, data[data.length - 1].date]);
 y.domain([minLimit - 2, d3.max(data, function (d) {
-    if (d.result+2 < maxLimit) { 
+    if (d.result+2 < maxLimit) {
         return maxLimit + 2;
         }
     else {
@@ -93,7 +92,7 @@ svg.append("path")
     .attr("class", "safe")
     .attr("d", area);
 
-// Add the value line 
+// Add the value line
 svg.append("path")
     .datum(data)
     .attr("class", "dataline")

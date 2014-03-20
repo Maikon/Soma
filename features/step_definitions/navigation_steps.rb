@@ -26,3 +26,15 @@ end
 Then(/^I should see a graph$/) do
   expect(page).to have_css('svg')
 end
+
+Then(/^I should only see the hb graph$/) do
+  expect(page).to have_css('svg.hb', visible: true)
+end
+
+Then(/^when I click on alt$/) do
+  click_link('alt')
+end
+
+Then(/^I should only see the graph for alt$/) do
+  expect(page).to have_css('svg.hb', visible: false)
+end
