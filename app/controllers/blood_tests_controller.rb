@@ -23,6 +23,12 @@ class BloodTestsController < ApplicationController
     redirect_to blood_tests_path
   end
 
+  def destroy
+    @blood_test = BloodTest.find(params[:id])
+    @blood_test.destroy
+    redirect_to blood_tests_path
+  end
+
   def index
     @blood_tests = BloodTest.order('taken_on DESC')
     respond_to do |format|
