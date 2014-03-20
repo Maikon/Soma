@@ -43,16 +43,23 @@ class BloodProbe < Struct.new(:blood_test)
 
   RANGES = {
     hemoglobin:                     HEMOGLOBIN_RANGE,
+    hb:                             HEMOGLOBIN_RANGE,
     mean_cell_volume:               MEAN_CELL_VOLUME_RANGE,
+    mcv:                            MEAN_CELL_VOLUME_RANGE,
     white_blood_cells:              WHITE_BLOOD_CELLS_RANGE,
+    wbc:                            WHITE_BLOOD_CELLS_RANGE,
     platelets:                      PLATELETS_RANGE,
     neutrophils:                    NEUTROPHILS_RANGE,
     lymphocytes:                    LYMPHOCYTES_RANGE,
     alanine_aminotransferase:       ALANINE_AMINOTRANSFERASE_RANGE,
+    alt:                            ALANINE_AMINOTRANSFERASE_RANGE,
     alkaline_phosphatase:           ALKALINE_PHOSPHATASE_RANGE,
+    alk_phos:                       ALKALINE_PHOSPHATASE_RANGE,
     creatinine:                     CREATININE_RANGE,
     erythrocyte_sedimentation_rate: ERYTHROCYTE_SEDIMENTATION_RATE_RANGE,
-    c_reactive_protein:             C_REACTIVE_PROTEIN_RANGE
+    esr:                            ERYTHROCYTE_SEDIMENTATION_RATE_RANGE,
+    c_reactive_protein:             C_REACTIVE_PROTEIN_RANGE,
+    crp:                            C_REACTIVE_PROTEIN_RANGE
   }
 
   METHODS = {
@@ -71,5 +78,9 @@ class BloodProbe < Struct.new(:blood_test)
 
   def within_range?(method)
     METHODS[method].call(blood_test)
+  end
+
+  def empty_value?(method)
+    blood_test.send(method.to_sym).nil? || blood_test.send(method.to_sym) == ''
   end
 end

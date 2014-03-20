@@ -11,6 +11,11 @@ body {
   text-align: center;
 }
 
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 a {
   text-decoration:none;
   color: $link-color;
@@ -20,6 +25,16 @@ a {
   }
 }
 
+h1 {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 1em;
+}
+
+body > header {
+  margin-top: 1em;
+}
+
 .main-content {
   background-color: #fefefe;
   text-align: center;
@@ -27,4 +42,38 @@ a {
   @include box-shadow(0, 0, 2px, rgba(51, 51, 51, 0.25));
   margin: 0 auto;
   padding: 1em 1em 1.5em;
+}
+
+.bar-chart {
+  height: 1em;
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  margin-left: 4em;
+
+  .bar-popup {
+    display: none;
+    width: auto;
+    position: absolute;
+    right: -1.7em;
+    top: -2.54em;
+    background-color: rgba(176, 0, 0, 0.4);
+    color: #fff;
+    font-size: 0.65em;
+    padding: 0.25em 0.5em;
+    @include border-radius(5px);
+  }
+
+  &:hover .bar-popup {
+    display: block;
+  }
+}
+
+.bar-chart div {
+  height: 100%;
+  width: 0;
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 0;
 }

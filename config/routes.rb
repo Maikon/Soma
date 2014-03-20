@@ -4,6 +4,7 @@ Soma::Application.routes.draw do
   get 'blood-tests' => 'blood_tests#index', as: :blood_tests
   get 'blood-tests/new' => 'blood_tests#new', as: :new_blood_test
   post 'blood-tests' => 'blood_tests#create'
+  get 'blood-tests/:id' => 'blood_tests#show', as: :blood_test
   get 'blood-tests/:id/edit' => 'blood_tests#edit', as: :edit_blood_test
   patch 'blood-tests/:id' => 'blood_tests#update', as: :update_blood_test
   get 'blood-tests/results/:name'=> 'blood_tests#results'

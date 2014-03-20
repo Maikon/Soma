@@ -9,17 +9,17 @@ end
 When(/^I enter the results$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
-  fill_in 'blood_test[hb]', with: '13'
-  fill_in 'blood_test[mcv]', with: '88'
-  fill_in 'blood_test[wbc]', with: '7.0'
-  fill_in 'blood_test[platelets]', with: '278'
-  fill_in 'blood_test[neutrophils]', with: '4.4'
-  fill_in 'blood_test[lymphocytes]', with: '2.2'
-  fill_in 'blood_test[alt]', with: '103'
-  fill_in 'blood_test[alk_phos]', with: '67'
-  fill_in 'blood_test[creatinine]', with: '50'
-  fill_in 'blood_test[esr]', with: '9'
-  fill_in 'blood_test[crp]', with: '<5'
+  fill_in 'blood_test[hb]', with: '13'            # In range
+  fill_in 'blood_test[mcv]', with: '88'           # In range
+  fill_in 'blood_test[wbc]', with: '7.0'          # In range
+  fill_in 'blood_test[platelets]', with: '278'    # In range
+  fill_in 'blood_test[neutrophils]', with: '4.4'  # In range
+  fill_in 'blood_test[lymphocytes]', with: '2.2'  # In range
+  fill_in 'blood_test[alt]', with: '103'          # Out of range
+  fill_in 'blood_test[alk_phos]', with: '67'      # In range
+  fill_in 'blood_test[creatinine]', with: '50'    # In range
+  fill_in 'blood_test[esr]', with: '9'            # In range
+  fill_in 'blood_test[crp]', with: '<5'           # In range
   click_button 'submit'
 end
 
@@ -40,6 +40,10 @@ When(/^I (?:enter|have entered) a set of results(?:| that includes an empty valu
   click_button 'submit'
 end
 
+When(/^I add a new blood test$/) do
+  enter_blood('01/01/2013')
+end
+
 When(/^fill up the edit form$/) do
   fill_in 'blood_test[hb]', with: '20'
   fill_in 'blood_test[esr]', with: '19'
@@ -51,7 +55,12 @@ When(/^I click "(.*?)"$/) do |link|
   click_link link
 end
 
+When(/^I click on the date for a blood test$/) do
+  click_link "01 Jan 2014"
+end
+
 Then(/^I want to be able to see those results$/) do
+  visit blood_tests_path
   ['Taken on', '01 Jan 2014', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
     expect(page).to have_content(string)
   end
@@ -121,6 +130,20 @@ end
 
 Then(/^I should see "(.*?)"$/) do |message|
   expect(page).to have_content(message)
+end
+
+Then(/^I should see my results grouped according to whether or not they are in range$/) do
+  expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
+  expect(page).to have_css('.danger', text: '103')
+  expect(page).to have_css('.no-danger', text: '13')
+end
+
+Then(/^I should be on the report page for that blood test$/) do
+  expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
+end
+
+Then(/^I should not see the empty result in the report$/) do
+  expect(page).not_to have_content("alk phos")
 end
 
 def enter_blood(date)
