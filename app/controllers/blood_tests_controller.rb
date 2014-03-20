@@ -31,8 +31,8 @@ class BloodTestsController < ApplicationController
     end
   end
 
-  def hb
-    render json: BloodTest.hemoglobin_levels_over_time_as_json
+  def results
+    render json: BloodTest.as_json(params[:name])
   end
 
   private

@@ -1,54 +1,54 @@
 class BloodTest < MedicalTest
   validates :taken_on, presence: true, uniqueness: true
 
-  def self.hemoglobin_levels_over_time_as_json
-    order('taken_on DESC').map do |test| 
-      { date: test.taken_on, result: test.hb } 
-    end.to_json
+  def self.as_json(method)
+    order('taken_on ASC').map do |test| 
+      { date: test.taken_on, result: test.send(method.to_sym) } 
+    end.reject { |test| test[:result].nil? }.to_json
   end
 
-   def has_healthy_hb?
-    # this varies between ladies and men
-    hb >= 12 && hb <= 16
-  end
+  #  def has_healthy_hb?
+  #   # this varies between ladies and men
+  #   hb >= 12 && hb <= 16
+  # end
 
-  def has_healthy_mcv?
-    mcv >= 80 && mcv <= 100
-  end
+  # def has_healthy_mcv?
+  #   mcv >= 80 && mcv <= 100
+  # end
 
-  def has_healthy_wbc?
-    wbc >= 4 && wbc <= 11
-  end
+  # def has_healthy_wbc?
+  #   wbc >= 4 && wbc <= 11
+  # end
 
-  def has_healthy_platelets?
-    platelets >= 140 && platelets <= 440
-  end
+  # def has_healthy_platelets?
+  #   platelets >= 140 && platelets <= 440
+  # end
 
-  def has_healthy_neutrophils?
-    neutrophils >= 2.5 && neutrophils <= 7.5
-  end
+  # def has_healthy_neutrophils?
+  #   neutrophils >= 2.5 && neutrophils <= 7.5
+  # end
 
-  def has_healthy_lymphocytes?
-    lymphocytes >= 1.0 && lymphocytes <= 4.8
-  end
+  # def has_healthy_lymphocytes?
+  #   lymphocytes >= 1.0 && lymphocytes <= 4.8
+  # end
 
-  def has_healthy_alt?
-    alt >= 10 && alt <= 40
-  end
+  # def has_healthy_alt?
+  #   alt >= 10 && alt <= 40
+  # end
 
-  def has_healthy_alk_phos?
-    alk_phos >= 44 && alk_phos <= 147
-  end
+  # def has_healthy_alk_phos?
+  #   alk_phos >= 44 && alk_phos <= 147
+  # end
 
-  def has_healthy_creatinine?
-    # this varies between ladies and men
-    creatinine >= 50 && creatinine <= 98
-  end
+  # def has_healthy_creatinine?
+  #   # this varies between ladies and men
+  #   creatinine >= 50 && creatinine <= 98
+  # end
 
-  def has_healthy_esr?
-    # age is a factor (age + 10) / 2 for ladies
-    esr >= 0 && esr <= 26
-  end
+  # def has_healthy_esr?
+  #   # age is a factor (age + 10) / 2 for ladies
+  #   esr >= 0 && esr <= 26
+  # end
 
   def has_healthy_crp?
     if crp =~ /^<(?:5|4|3|2|1)$/
