@@ -2,6 +2,17 @@ Given(/^I visit the homepage$/) do
   visit root_path
 end
 
+Given(/^I visit the JSON page for "(.*?)"$/) do |link|
+  visit "blood-tests/results/#{link}"
+end
+
+Then(/^I should see JSON data$/) do
+  expect(page).to have_content("date")
+  expect(page).to have_content("2014-01-01")
+  expect(page).to have_content("result")
+  expect(page).to have_content("13")
+end
+
 Then(/^I can go to a new blood test form$/) do
   click_link "Enter new blood test results"
   expect(current_path).to eq(new_blood_test_path)
