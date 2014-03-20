@@ -4,17 +4,17 @@ end
 
 When(/^I enter the results$/) do
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
-  fill_in 'blood_test[hb]', with: '13'
-  fill_in 'blood_test[mcv]', with: '88'
-  fill_in 'blood_test[wbc]', with: '7.0'
-  fill_in 'blood_test[platelets]', with: '278'
-  fill_in 'blood_test[neutrophils]', with: '4.4'
-  fill_in 'blood_test[lymphocytes]', with: '2.2'
-  fill_in 'blood_test[alt]', with: '103'
-  fill_in 'blood_test[alk_phos]', with: '67'
-  fill_in 'blood_test[creatinine]', with: '50'
-  fill_in 'blood_test[esr]', with: '9'
-  fill_in 'blood_test[crp]', with: '<5'
+  fill_in 'blood_test[hb]', with: '13'            # In range
+  fill_in 'blood_test[mcv]', with: '88'           # In range
+  fill_in 'blood_test[wbc]', with: '7.0'          # In range
+  fill_in 'blood_test[platelets]', with: '278'    # In range
+  fill_in 'blood_test[neutrophils]', with: '4.4'  # In range
+  fill_in 'blood_test[lymphocytes]', with: '2.2'  # In range
+  fill_in 'blood_test[alt]', with: '103'          # Out of range
+  fill_in 'blood_test[alk_phos]', with: '67'      # In range
+  fill_in 'blood_test[creatinine]', with: '50'    # In range
+  fill_in 'blood_test[esr]', with: '9'            # In range
+  fill_in 'blood_test[crp]', with: '<5'           # In range
   click_button 'submit'
 end
 
@@ -33,6 +33,10 @@ When(/^I (?:enter|have entered) a set of results(?:| that includes an empty valu
   fill_in 'blood_test[esr]', with: '9'
   fill_in 'blood_test[crp]', with: '<5'
   click_button 'submit'
+end
+
+When(/^I add a new blood test$/) do
+  enter_blood('01/01/2013')
 end
 
 When(/^fill up the edit form$/) do
@@ -107,6 +111,12 @@ end
 
 Then(/^I should see "(.*?)"$/) do |message|
   expect(page).to have_content(message)
+end
+
+Then(/^I should see my results grouped according to whether or not they are in range$/) do
+  expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
+  expect(page).to have_css('.danger', text: '103')
+  expect(page).to have_css('.no-danger', text: '13')
 end
 
 def enter_blood(date)
