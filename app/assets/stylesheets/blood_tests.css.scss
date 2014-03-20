@@ -90,7 +90,8 @@ table {
 }
 
 .ui-tabs .ui-tabs-nav li a {
-  color: darken($link-color, 5%);
+  font-size: 0.9em;
+  padding: 0.3em 0.6em;
   outline: none;
 }
 
@@ -98,30 +99,24 @@ table {
     padding: 0em;
     background: transparent;
     border-width: 0px;
+    text-align: center;
 }
 
 #tabs .ui-tabs-nav li {
-    position: static;
     margin: 0px;
-    border-bottom: 1px solid darken($link-color, 5%);
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
+    display: inline-block;
+    float: none;
 }
 
-#tabs .ui-tabs-nav li:first-child {
-    -moz-border-radius: 6px 0px 0px 6px;
-    -webkit-border-radius: 6px 0px 0px 6px;
-    border-radius: 6px 0px 0px 6px;
+.ui-state-active a, .ui-widget-content .ui-state-active a, .ui-widget-header .ui-state-active a {
+  background-color: $link-color;
+  color: #fff;
+  @include border-radius(8px);
 }
 
-#tabs .ui-tabs-nav li:last-child {
-    -moz-border-radius: 0px 6px 6px 0px;
-    -webkit-border-radius: 0px 6px 6px 0px;
-    border-radius: 0px 6px 6px 0px;
-}
-.ui-tabs .ui-tabs-nav {
-  margin: 20px 100px;
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: none;
+  background: none;
 }
 
 .blood-test-report {
