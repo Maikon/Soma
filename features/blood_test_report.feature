@@ -7,6 +7,10 @@ Feature: Blood Test Reports
     When I add a new blood test
     Then I should see my results grouped according to whether or not they are in range
 
+  Scenario: Not seeing blank values
+    When I enter a set of results that includes an empty value
+    Then I should not see the empty result in the report
+
   Scenario: Viewing reports from the Blood Tests page
     Given I have entered a set of results
     When I am on the blood test results page

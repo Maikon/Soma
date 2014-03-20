@@ -128,6 +128,10 @@ Then(/^I should be on the report page for that blood test$/) do
   expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
 end
 
+Then(/^I should not see the empty result in the report$/) do
+  expect(page).not_to have_content("alk phos")
+end
+
 def enter_blood(date)
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: date
