@@ -27,3 +27,4 @@
 
   <%= form.submit 'submit' %>
 <% end %>
+<%= link_to "Delete", delete_blood_test_path(@blood_test.id), method: :delete, data: { confirm: 'Are you sure?' } %>

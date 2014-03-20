@@ -2,6 +2,10 @@ Given(/^I am on the blood test entry page$/) do
   visit new_blood_test_path
 end
 
+Given(/^I am on the edit results page$/) do
+  visit edit_blood_test_path
+end
+
 When(/^I enter the results$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
@@ -87,6 +91,10 @@ When(/^I don't enter a date$/) do
   enter_blood('')
 end
 
+When(/^I delete the given test$/) do
+  click_link 'Delete'
+end
+
 Then(/^I should be on the blood test entry page$/) do
   expect(current_path).to eq(new_blood_test_path)
 end
@@ -101,6 +109,11 @@ Then(/^I should see my changes$/) do
   end
 end
 
+Then(/^I should not see that set of data on the page$/) do
+  ['01 Jan 2014', '20', '88', '7.0', '278', '4.4', '2.2', '103', '67', '50', '19', '<5'].each do |string|
+    expect(page).not_to have_content(string)
+  end
+end
 
 Then(/^there should be blank cells in the table$/) do
   expect(page).to have_css('.empty-value', text: '')
