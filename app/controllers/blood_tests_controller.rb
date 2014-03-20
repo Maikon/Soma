@@ -6,11 +6,16 @@ class BloodTestsController < ApplicationController
   def create
     blood_test = BloodTest.new(blood_test_params)
     if blood_test.save
-      redirect_to blood_tests_path
+      redirect_to blood_test_path(blood_test)
     else
       flash[:errors] = blood_test.error_messages
       redirect_to new_blood_test_path
     end
+  end
+
+  def show
+    @blood_test = BloodTest.find(params[:id])
+    @probe = BloodProbe.new(@blood_test)
   end
 
   def edit

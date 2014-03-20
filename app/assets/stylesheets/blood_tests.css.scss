@@ -64,6 +64,10 @@ table {
     border-bottom: 2px solid #fff;
     @include border-radius(7px);
   }
+  
+  th {
+    font-weight: bold;
+  }
 
   td.danger {
     background-color: rgba(176, 0, 0, 0.75);
@@ -73,5 +77,87 @@ table {
   td.no-danger {
     background-color: rgba(0, 176, 0, 0.74);
     color: #fff;
+  }
+}
+
+.ui-tabs .ui-tabs-nav li a {
+  color: darken($link-color, 5%);
+  outline: none;
+}
+
+#tabs .ui-tabs-nav {
+    padding: 0em;
+    background: transparent;
+    border-width: 0px;
+}
+
+#tabs .ui-tabs-nav li {
+    position: static;
+    margin: 0px;
+    border-bottom: 1px solid darken($link-color, 5%);
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+#tabs .ui-tabs-nav li:first-child {
+    -moz-border-radius: 6px 0px 0px 6px;
+    -webkit-border-radius: 6px 0px 0px 6px;
+    border-radius: 6px 0px 0px 6px;
+}
+
+#tabs .ui-tabs-nav li:last-child {
+    -moz-border-radius: 0px 6px 6px 0px;
+    -webkit-border-radius: 0px 6px 6px 0px;
+    border-radius: 0px 6px 6px 0px;
+}
+.ui-tabs .ui-tabs-nav {
+  margin: 20px 100px;
+}
+
+.blood-test-report {
+  width: 40em;
+  
+  section {
+    width: 100%;
+    text-align: left;
+    
+    header {
+      text-align: left;
+      padding: 0.5em 1em 1em;
+      
+      h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+    }
+    
+    &.danger header {
+      border-bottom: 4px solid $danger-color;
+    }
+    
+    &.no-danger header {
+      border-bottom: 4px solid $no-danger-color;
+    }
+    
+    p {
+      width: 30%;
+      display: inline-block;
+      text-align: center;
+    }
+    
+    ul {
+      padding: 1em;
+      
+      li {
+        font-size: 1.1em;
+        padding: 0.5em;
+      }
+    }
+
+    .text {
+      display: inline-block;
+      width: 150px;
+    }
   }
 }

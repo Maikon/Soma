@@ -16,6 +16,7 @@ Scenario: With the same date
 
 Scenario: With nil values
   When I enter a set of results that includes an empty value
+  And I am on the blood test results page
   Then there should be blank cells in the table
 
 Scenario: With empty date

@@ -3,7 +3,7 @@ Given(/^I visit the homepage$/) do
 end
 
 Given(/^I visit the JSON page for "(.*?)"$/) do |link|
-  visit "blood-tests/results/#{link}"
+  visit "/blood-tests/results/#{link}"
 end
 
 Then(/^I should see JSON data$/) do
@@ -32,7 +32,7 @@ Then(/^I should only see the hb graph$/) do
 end
 
 Then(/^when I click on alt$/) do
-  click_link('alt')
+  click_link 'alt'
 end
 
 Then(/^I should only see the graph for alt$/) do
