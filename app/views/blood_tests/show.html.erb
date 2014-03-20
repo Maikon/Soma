@@ -6,7 +6,7 @@
     </header>
     <% methods.each do |method| %>
       <% unless @probe.within_range?(method.to_sym) %>
-        <p><%= method %> <%= @blood_test.send(method.to_sym) %></p>
+        <p><%= method.gsub("_", " ") %>: <%= @blood_test.send(method.to_sym) %></p>
       <% end %>
     <% end %>
   </section>
@@ -16,7 +16,7 @@
     </header>
     <% methods.each do |method| %>
       <% if @probe.within_range?(method.to_sym) %>
-        <p><%= method %> <%= @blood_test.send(method.to_sym) %></p>
+        <p><%= method.gsub("_", " ") %>: <%= @blood_test.send(method.to_sym) %></p>
       <% end %>
     <% end %>
   </section>

@@ -50,6 +50,10 @@ When(/^I click "(.*?)"$/) do |link|
   click_link link
 end
 
+When(/^I click on the date for a blood test$/) do
+  click_link "01 Jan 2014"
+end
+
 Then(/^I want to be able to see those results$/) do
   visit blood_tests_path
   ['Taken on', '01 Jan 2014', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
@@ -118,6 +122,10 @@ Then(/^I should see my results grouped according to whether or not they are in r
   expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
   expect(page).to have_css('.danger', text: '103')
   expect(page).to have_css('.no-danger', text: '13')
+end
+
+Then(/^I should be on the report page for that blood test$/) do
+  expect(current_path).to eq(blood_test_path(BloodTest.find_by_hb(13)))
 end
 
 def enter_blood(date)

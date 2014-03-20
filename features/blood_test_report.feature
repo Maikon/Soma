@@ -6,3 +6,9 @@ Feature: Blood Test Reports
   Scenario: Seeing which results are in range and which are out of range
     When I add a new blood test
     Then I should see my results grouped according to whether or not they are in range
+
+  Scenario: Viewing reports from the Blood Tests page
+    Given I have entered a set of results
+    When I am on the blood test results page
+    And I click on the date for a blood test
+    Then I should be on the report page for that blood test

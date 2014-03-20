@@ -81,6 +81,7 @@ table {
   
   section {
     width: 100%;
+    text-align: left;
     
     header {
       text-align: left;
@@ -98,6 +99,12 @@ table {
     
     &.no-danger header {
       border-bottom: 4px solid $no-danger-color;
+    }
+    
+    p {
+      width: 30%;
+      display: inline-block;
+      text-align: center;
     }
   }
 }
