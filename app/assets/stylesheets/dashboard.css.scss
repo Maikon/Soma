@@ -14,3 +14,15 @@ path.dataline {
     fill:none;
 }
 
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 100px;                  
+  height: 30px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
