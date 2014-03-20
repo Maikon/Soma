@@ -58,6 +58,15 @@ table {
   text-align: center;
   display: inline-block;
 
+  thead tr:first-child th {
+    padding-bottom: 0.25em;
+  }
+
+  thead tr:last-child th {
+    padding-top: 0;
+    font-size: 0.9em;
+  }
+
   td, th {
     padding: .5em;
     border-right: 2px solid #fff;
