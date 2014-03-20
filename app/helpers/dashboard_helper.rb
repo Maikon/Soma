@@ -9,7 +9,8 @@ module DashboardHelper
       alt:BloodProbe::ALANINE_AMINOTRANSFERASE_RANGE,
       alk_phos: BloodProbe::ALKALINE_PHOSPHATASE_RANGE,
       creatinine: BloodProbe::CREATININE_RANGE,
-      esr: BloodProbe::ERYTHROCYTE_SEDIMENTATION_RATE_RANGE
+      esr: BloodProbe::ERYTHROCYTE_SEDIMENTATION_RATE_RANGE,
+      crp: BloodProbe::C_REACTIVE_PROTEIN_RANGE
     }
   end
 end
