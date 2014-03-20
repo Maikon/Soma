@@ -32,7 +32,7 @@ Then(/^I should only see the hb graph$/) do
 end
 
 Then(/^when I click on alt$/) do
-  click_link('alt')
+  click_link 'alt'
 end
 
 Then(/^I should only see the graph for alt$/) do
