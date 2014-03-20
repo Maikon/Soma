@@ -58,4 +58,8 @@ class BloodProbe < Struct.new(:blood_test)
   def within_range?(method)
     METHODS[method].call(blood_test)
   end
+
+  def empty_value?(method)
+    blood_test.send(method.to_sym).nil? || blood_test.send(method.to_sym) == ''
+  end
 end
