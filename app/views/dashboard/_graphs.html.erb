@@ -1,16 +1,12 @@
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>    
 
 <script type="text/javascript">
-// Set the dimensions of the canvas / graph
-
-// console.log(newData);
-
 request = new XMLHttpRequest();
 request.open('GET', '/blood-tests/results/hb', false);
 request.send(null);
-var newData = JSON.parse(request.responseText);
-console.log(newData);
+var data = JSON.parse(request.responseText);
 
+// Set the dimensions of the canvas / graph
 var margin = {
     top: 20,
     right: 50,
@@ -34,7 +30,7 @@ var y = d3.scale.linear()
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
-    .ticks(newData.length);
+    .ticks(data.length);
 
 var yAxis = d3.svg.axis()
     .scale(y)
@@ -68,10 +64,8 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var data = newData;
-
-var maxLimit = 16;
-var minLimit = 11.5;
+var maxLimit = <%= BloodProbe::HEMOGLOBIN_RANGE.last %>;
+var minLimit = <%= BloodProbe::HEMOGLOBIN_RANGE.first %>;
 
 
 data.forEach(function (d) {
@@ -81,7 +75,6 @@ data.forEach(function (d) {
     d.max = maxLimit;
 
 });
-
 
 // Scale the range of the data
 x.domain([data[0].date, data[data.length - 1].date]);
