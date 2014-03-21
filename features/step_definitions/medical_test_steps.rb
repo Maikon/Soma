@@ -6,6 +6,10 @@ Given(/^I am on the edit results page$/) do
   visit edit_blood_test_path
 end
 
+Given(/^there is a test result already$/) do
+  enter_blood('01 Jan 2014')
+end
+
 When(/^I enter the results$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
@@ -91,11 +95,9 @@ Then(/^I should see those results in chronological order$/) do
   expect(last).to have_content('01 Jan 2012')
 end
 
-When(/^I enter two sets of results with the same date$/) do
-  enter_blood('01/01/2014')
-  enter_blood('01/01/2014')
+When(/^I enter a new result with the same date$/) do
+  enter_blood('01 Jan 2014')
 end
-
 When(/^I don't enter a date$/) do
   enter_blood('')
 end
@@ -104,8 +106,8 @@ When(/^I delete the given test$/) do
   click_link 'Delete'
 end
 
-Then(/^I should be on the blood test entry page$/) do
-  expect(current_path).to eq(new_blood_test_path)
+Then(/^I should still be on the blood test entry page$/) do
+  expect(current_path).to eq(blood_tests_path)
 end
 
 Then(/^I should be on the edit page for that blood test$/) do
@@ -116,6 +118,12 @@ Then(/^I should see my changes$/) do
   ['Taken on', '01 Jan 2014', 'Hb', '20', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '19', 'CRP', '<5'].each do |string|
     expect(page).to have_content(string)
   end
+end
+
+Then(/^I should still see the fields of the second result I entered$/) do
+  find_field('Hb').value.should eq '13'
+  find_field('MCV').value.should eq '88'
+  find_field('WBC').value.should eq '7.0'
 end
 
 Then(/^I should not see that set of data on the page$/) do

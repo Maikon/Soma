@@ -10,9 +10,11 @@ Scenario: For the first time
 
 Scenario: With the same date
   Given I am on the blood test entry page
-  When I enter two sets of results with the same date
-  Then I should be on the blood test entry page
+  And there is a test result already
+  When I enter a new result with the same date
+  Then I should still be on the blood test entry page
   And I should see "You already gave me test results for this day"
+  And I should still see the fields of the second result I entered
 
 Scenario: With nil values
   When I enter a set of results that includes an empty value
@@ -22,5 +24,5 @@ Scenario: With nil values
 Scenario: With empty date
   Given I am on the blood test entry page
   When I don't enter a date
-  Then I should be on the blood test entry page
+  Then I should still be on the blood test entry page
   And I should see "Date can't be blank"
