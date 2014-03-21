@@ -1,7 +1,7 @@
 <h1>New Blood Test</h1>
 <%= form_for @blood_test, html: {class: 'main-content'} do |form| %>
   <%= form.label 'taken_on' %>
-  <%= form.date_field :taken_on %>
+  <%= form.date_field :taken_on, required: true %>
   <%= form.label :hb, 'Hb ('+BloodProbe::HEMOGLOBIN_UNIT+')' %>
   <%= form.number_field :hb, step: 0.1 %>
   <%= form.label :mcv, 'MCV ('+BloodProbe::MEAN_CELL_VOLUME_UNIT+')' %>
