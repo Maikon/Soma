@@ -6,7 +6,7 @@ describe BloodTest do
       hb: 12.7, mcv: 88.0, 
       wbc: 7.0, platelets: 278.0, neutrophils: 4.4, 
       lymphocytes: 2.0, alt: 12.0, alk_phos: 45, 
-      creatinine: 50.0, esr: 9.0, crp: nil)
+      creatinine: 50.0, esr: 9.0, crp: '')
   end
   let(:test_with_crp) do
     BloodTest.new(taken_on: "2013-03-11", 
@@ -30,6 +30,11 @@ describe BloodTest do
     it "should not return data for empty result" do
       expect(BloodTest).to receive(:order).and_return ([test, test_with_crp])
       expect(BloodTest.as_json(:crp)). to eq("[{\"date\":\"2013-03-11\",\"result\":3}]")
+    end
+
+    it "all" do
+      expect(BloodTest).to receive(:order).any_number_of_times.and_return ([test])
+      expect(BloodTest.all_as_json). to eq("{\"hb\":[{\"date\":\"2013-03-11\",\"result\":12.7}],\"mcv\":[{\"date\":\"2013-03-11\",\"result\":88.0}],\"wbc\":[{\"date\":\"2013-03-11\",\"result\":7.0}],\"platelets\":[{\"date\":\"2013-03-11\",\"result\":278.0}],\"neutrophils\":[{\"date\":\"2013-03-11\",\"result\":4.4}],\"lymphocytes\":[{\"date\":\"2013-03-11\",\"result\":2.0}],\"alt\":[{\"date\":\"2013-03-11\",\"result\":12.0}],\"alk_phos\":[{\"date\":\"2013-03-11\",\"result\":45.0}],\"creatinine\":[{\"date\":\"2013-03-11\",\"result\":50.0}],\"esr\":[{\"date\":\"2013-03-11\",\"result\":9.0}],\"crp\":[]}")
     end
   end
 end
