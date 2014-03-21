@@ -1,29 +1,41 @@
 <h1>Edit Blood Test</h1>
 <%= form_for @blood_test, url: update_blood_test_path(@blood_test), html: { method: "patch", class: 'main-content' } do |form| %>
   <%= form.label 'taken_on' %>
-  <%= form.date_field :taken_on %>
+  <%= form.date_field :taken_on, required: true %>
+  <p></p>
   <%= form.label :hb, 'Hb' %>
   <%= form.number_field :hb, step: 0.1 %>
+  <p>(<%= BloodProbe::HEMOGLOBIN_UNIT %>)</p>
   <%= form.label :mcv, 'MCV' %>
   <%= form.number_field :mcv, step: 0.1 %>
-  <%= form.label :wbc, 'WBC' %>
+  <p>(<%= BloodProbe::MEAN_CELL_VOLUME_UNIT %>)</p>
+  <%= form.label :wbc, "WBC" %>
   <%= form.number_field :wbc, step: 0.1 %>
-  <%= form.label :platelets, 'Platelets' %>
+  <p><%= "(#{BloodProbe::WHITE_BLOOD_CELLS_UNIT})".html_safe %></p>
+  <%= form.label :platelets, "Platelets" %>
   <%= form.number_field :platelets, step: 0.1 %>
-  <%= form.label :neutrophils, 'Neutrophils' %>
+  <p><%= "(#{BloodProbe::PLATELETS_UNIT})".html_safe %></p>
+  <%= form.label :neutrophils, "Neutrophils" %>
   <%= form.number_field :neutrophils, step: 0.1 %>
-  <%= form.label :lymphocytes, 'Lymphocytes' %>
+  <p><%= "(#{BloodProbe::NEUTROPHILS_UNIT})".html_safe %></p>
+  <%= form.label :lymphocytes, "Lymphocytes" %>
   <%= form.number_field :lymphocytes, step: 0.1 %>
+  <p><%= "(#{BloodProbe::LYMPHOCYTES_UNIT})".html_safe %></p>
   <%= form.label :alt, 'ALT' %>
   <%= form.number_field :alt, step: 0.1 %>
+  <p>(<%= BloodProbe::ALANINE_AMINOTRANSFERASE_UNIT %>)</p>
   <%= form.label :alk_phos, 'Alk Phos' %>
   <%= form.number_field :alk_phos, step: 0.1 %>
+  <p>(<%= BloodProbe::ALKALINE_PHOSPHATASE_UNIT %>)</p>
   <%= form.label :creatinine, 'Creatinine' %>
   <%= form.number_field :creatinine, step: 0.1 %>
+  <p>(<%= BloodProbe::CREATININE_UNIT %>)</p>
   <%= form.label :esr, 'ESR' %>
   <%= form.number_field :esr, step: 0.1 %>
-  <%= form.label :crp, 'CRP' %>
+  <p>(<%= BloodProbe::ERYTHROCYTE_SEDIMENTATION_RATE_UNIT %>)</p>
+  <%= form.label :crp, 'CRP'  %>
   <%= form.text_field :crp %>
+  <p>(<%= BloodProbe::C_REACTIVE_PROTEIN_UNIT %>)</p>
 
   <%= form.submit 'submit' %>
 <% end %>

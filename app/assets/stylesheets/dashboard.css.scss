@@ -1,3 +1,5 @@
+@import 'variables';
+@import 'mixins';
 
 .axis path, .axis line {
     fill: none;
@@ -5,10 +7,12 @@
     stroke-width: 1;
     shape-rendering: crispEdges;
 }
+
 path.safe {
     stroke:none;
     fill:rgba(0, 217, 50, 0.4);
 }
+
 path.dataline {
     stroke:red;
     fill:none;
@@ -17,12 +21,13 @@ path.dataline {
 div.tooltip {   
   position: absolute;           
   text-align: center;           
-  width: 100px;                  
-  height: 30px;                 
-  padding: 2px;             
-  font: 12px sans-serif;        
-  background: lightsteelblue;   
+  min-width: 100px;                  
+  min-height: 30px;                 
+  padding: 0.5em;             
+  font: 0.75em sans-serif;        
+  background: lightsteelblue;
+  color: #fff;
   border: 0px;      
-  border-radius: 8px;           
+  @include border-radiuses(10px, 10px, 10px, 0);           
   pointer-events: none;         
 }
