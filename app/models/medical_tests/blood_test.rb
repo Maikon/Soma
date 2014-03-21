@@ -2,6 +2,10 @@ class BloodTest < MedicalTest
   validates :taken_on, presence: true, uniqueness: true
 
   def self.as_json(method)
+    prepare_for_json(method).to_json
+  end
+
+  def self.prepare_for_json(method)
     order('taken_on ASC').map do |test| 
       if method == "crp"
           old_result = test.send(method.to_sym)
@@ -10,8 +14,30 @@ class BloodTest < MedicalTest
         else
           { date: test.taken_on, result: test.send(method.to_sym)}
       end
-    end.reject { |test| test[:result].nil?|| test[:result]==''}.to_json
+    end.reject { |test| test[:result].nil?|| test[:result]==''}
   end
+
+  def self.all_as_json
+    @methods =
+    ["hb",
+      "mcv",
+      "wbc",
+      "platelets",
+      "neutrophils",
+      "lymphocytes",
+      "alt",
+      "alk_phos",
+      "creatinine",
+      "esr",
+      "crp"
+    ]
+    all = {}
+    @methods.each do |method|
+      all[method.to_sym] = prepare_for_json(method)
+    end  
+    return all.to_json
+  end
+
 
   #  def has_healthy_hb?
   #   # this varies between ladies and men
