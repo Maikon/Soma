@@ -8,7 +8,7 @@ class BloodTestsController < ApplicationController
     if @blood_test.save
       redirect_to blood_test_path(@blood_test)
     else
-      flash[:errors] = @blood_test.error_messages
+      flash.now[:errors] = @blood_test.error_messages
       render action: 'new'
     end
   end
