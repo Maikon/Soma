@@ -67,6 +67,10 @@ When(/^I click on the date for a blood test$/) do
   click_link "01 Jan 2014"
 end
 
+Then(/^I should be able to see the json data$/) do
+  expect(page).to have_content('{"hb":{"name":"Hb","fullname":"Haemoglobin","unit":"g/L","min":16,"max":11.5},"mcv":{"name":"MCV","fullname":"Mean Cell Volume","unit":"fL","min":100,"max":80},"wbc":{"name":"WBC","fullname":"White Blood Cells","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":11,"max":4},"platelets":{"name":"Platelets","fullname":"Platelets","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":440,"max":140},"neutrophils":{"name":"Neutrophils","fullname":"Neutrophils","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":7.5,"max":2.5},"lymphocytes":{"name":"Lymphocytes","fullname":"Lymphocytes","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":4.8,"max":1.0},"alt":{"name":"ALT","fullname":"Alanine Aminotransferase","unit":"µkat/L","min":40,"max":10},"alk_phos":{"name":"Alk Phos","fullname":"Alkaline Phosphates","unit":"U/L","min":147,"max":44},"creatinine":{"name":"Creatinine","fullname":"Creatinine","unit":"μmol/L","min":98,"max":50},"esr":{"name":"ESR","fullname":"Erythrocyte Sedimentation Rate","unit":"mm/hr","min":26,"max":0},"crp":{"name":"CRP","fullname":"C Reactive Protein","unit":"mg/L","min":5,"max":0}}')
+end
+
 Then(/^I want to be able to see those results$/) do
   visit blood_tests_path
   ['Taken on', '01 Jan 2014', 'Hb', '13', 'MCV', '88', 'WBC', '7.0', 'Platelets', '278', 'Neutrophils', '4.4', 'Lymphocytes', '2.2', 'ALT', '103', 'Alk Phos', '67', 'Creatinine', '50', 'ESR', '9', 'CRP', '<5'].each do |string|
