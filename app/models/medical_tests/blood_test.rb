@@ -2,18 +2,16 @@ class BloodTest < MedicalTest
   validates :taken_on, presence: true, uniqueness: true
 
   def self.as_json(method)
-    prepare_for_json(method).to_json
+    prepare_for_json(method.to_sym).to_json
   end
 
   def self.prepare_for_json(method)
     order('taken_on ASC').map do |test|
-      if method == "crp"
-          old_result = test.send(method.to_sym)
-          new_result = old_result.gsub("<","").to_f if !old_result.empty?
-          { date: test.taken_on, result: new_result}
-        else
-          { date: test.taken_on, result: test.send(method.to_sym)}
+      result = test.send(method)
+      if method == :crp && result.is_a?(String)
+          result = result.gsub("<","").to_i unless result.nil? || result.empty?
       end
+      { date: test.taken_on, result: result }
     end.reject { |test| test[:result].nil?|| test[:result]==''}
   end
 
@@ -25,22 +23,9 @@ class BloodTest < MedicalTest
   end
 
   def self.all_as_json
-    @methods =
-    ["hb",
-      "mcv",
-      "wbc",
-      "platelets",
-      "neutrophils",
-      "lymphocytes",
-      "alt",
-      "alk_phos",
-      "creatinine",
-      "esr",
-      "crp"
-    ]
     all = {}
-    @methods.each do |method|
-      all[method.to_sym] = prepare_for_json(method)
+    BloodTestsHelper::TEST_NAMES.each do |method|
+      all[method] = prepare_for_json(method)
     end
     return all.to_json
   end
