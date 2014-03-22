@@ -16,6 +16,10 @@ class BloodTestsController < ApplicationController
   def show
     @blood_test = BloodTest.find(params[:id])
     @probe = BloodProbe.new(@blood_test)
+    respond_to do |format|
+      format.html
+      format.json { render json: @blood_test.to_json }
+    end
   end
 
   def edit
