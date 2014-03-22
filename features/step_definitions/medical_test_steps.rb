@@ -14,6 +14,11 @@ Given(/^I am on the legend page$/) do
   visit blood_tests_legend_path
 end
 
+Given(/^I am on the json page for all results$/) do
+  visit blood_tests_all_results_path
+end
+
+
 When(/^I enter the results$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
@@ -69,6 +74,10 @@ end
 
 Then(/^I should be able to see the json data$/) do
   expect(page).to have_content('{"hb":{"name":"Hb","fullname":"Haemoglobin","unit":"g/L","min":11.5,"max":16},"mcv":{"name":"MCV","fullname":"Mean Cell Volume","unit":"fL","min":80,"max":100},"wbc":{"name":"WBC","fullname":"White Blood Cells","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":4,"max":11},"platelets":{"name":"Platelets","fullname":"Platelets","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":140,"max":440},"neutrophils":{"name":"Neutrophils","fullname":"Neutrophils","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":2.5,"max":7.5},"lymphocytes":{"name":"Lymphocytes","fullname":"Lymphocytes","unit":"x10\u003Csup\u003E9\u003C/sup\u003E/L","min":1.0,"max":4.8},"alt":{"name":"ALT","fullname":"Alanine Aminotransferase","unit":"µkat/L","min":10,"max":40},"alk_phos":{"name":"Alk Phos","fullname":"Alkaline Phosphates","unit":"U/L","min":44,"max":147},"creatinine":{"name":"Creatinine","fullname":"Creatinine","unit":"μmol/L","min":50,"max":98},"esr":{"name":"ESR","fullname":"Erythrocyte Sedimentation Rate","unit":"mm/hr","min":0,"max":26},"crp":{"name":"CRP","fullname":"C Reactive Protein","unit":"mg/L","min":0,"max":5}}')
+end
+
+Then(/^I should see the results arranged by test name$/) do
+  expect(page).to have_content('{"hb":[{"date":"2014-01-01","result":13.0}],"mcv":[{"date":"2014-01-01","result":88.0}],"wbc":[{"date":"2014-01-01","result":7.0}],"platelets":[{"date":"2014-01-01","result":278.0}],"neutrophils":[{"date":"2014-01-01","result":4.4}],"lymphocytes":[{"date":"2014-01-01","result":2.2}],"alt":[{"date":"2014-01-01","result":103.0}],"alk_phos":[{"date":"2014-01-01","result":67.0}],"creatinine":[{"date":"2014-01-01","result":50.0}],"esr":[{"date":"2014-01-01","result":9.0}],"crp":[{"date":"2014-01-01","result":5}]}')
 end
 
 Then(/^I want to be able to see those results$/) do

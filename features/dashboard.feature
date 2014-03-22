@@ -20,6 +20,11 @@ Scenario: JSON data
   Given I visit the JSON page for "hb"
   Then I should see JSON data
 
+Scenario: view results as json
+  Given I am on the json page for all results
+  Then I should see the results arranged by test name
+
+
 @javascript
 Scenario: Graphs
   Given I visit the homepage
