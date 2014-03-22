@@ -50,8 +50,6 @@ class BloodProbe < Struct.new(:blood_test)
   }
 
 
-  TEST_NAMES = [:hb,:mcv,:wbc,:platelets,:neutrophils,:lymphocytes,:alt,:alk_phos,:creatinine,:esr,:crp]
-
   HEADERS = {
     hemoglobin:                     "Hb",
     hb:                             "Hb",

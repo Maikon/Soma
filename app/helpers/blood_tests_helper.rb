@@ -37,6 +37,8 @@ UNITS = {
     crp:                            C_REACTIVE_PROTEIN_UNIT
   }
 
+  TEST_NAMES = [:hb,:mcv,:wbc,:platelets,:neutrophils,:lymphocytes,:alt,:alk_phos,:creatinine,:esr,:crp]
+
   def headers
     ["Taken on",
       "Hb",
@@ -50,21 +52,6 @@ UNITS = {
       "Creatinine",
       "ESR",
       "CRP"
-    ]
-  end
-
-  def methods
-    ["hb",
-      "mcv",
-      "wbc",
-      "platelets",
-      "neutrophils",
-      "lymphocytes",
-      "alt",
-      "alk_phos",
-      "creatinine",
-      "esr",
-      "crp"
     ]
   end
 

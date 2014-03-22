@@ -5,15 +5,15 @@
       <h1>Results Out of Range</h1>
     </header>
     <ul>
-      <% methods.each do |method| %>
-        <% unless @probe.within_range?(method.to_sym) || @probe.empty_value?(method) %>
+      <% BloodTestsHelper::TEST_NAMES.each do |method| %>
+        <% unless @probe.within_range?(method) || @probe.empty_value?(method) %>
           <li>
-            <span class="text"><%= method.gsub("_", " ") %>: <%= @blood_test.send(method.to_sym) %></span>
+            <span class="text"><%= BloodProbe::HEADERS[method] %>: <%= @blood_test.send(method) %></span>
             <div id="bar-<%= method %>" class="bar-chart">
               <div></div>
               <div></div>
               <div></div>
-              <div><p class="bar-popup"><%= @blood_test.send(method.to_sym) %></p></div>
+              <div><p class="bar-popup"><%= @blood_test.send(method) %></p></div>
               <!-- <div /> -->
             </div>
           </li>
@@ -25,30 +25,30 @@
     <header>
       <h1>Results In Range</h1>
     </header>
-    <% methods.each do |method| %>
-      <% if @probe.within_range?(method.to_sym) && !@probe.empty_value?(method) %>
-        <p><%= method.gsub("_", " ") %>: <%= @blood_test.send(method.to_sym) %></p>
+    <% BloodTestsHelper::TEST_NAMES.each do |method| %>
+      <% if @probe.within_range?(method) && !@probe.empty_value?(method) %>
+        <p><%= BloodProbe::HEADERS[method] %>: <%= @blood_test.send(method) %></p>
       <% end %>
     <% end %>
   </section>
 </article>
 
 <script src="http://d3js.org/d3.v3.js"></script>
-<% methods.each do |method| %>
-  <% unless @probe.within_range?(method.to_sym) || @probe.empty_value?(method) || method == 'crp' %>
+<% BloodTestsHelper::TEST_NAMES.each do |method| %>
+  <% unless @probe.within_range?(method) || @probe.empty_value?(method) || method == 'crp' %>
     <script>
-      var max = <%= [ BloodProbe::RANGES[method.to_sym].last + 10, @blood_test.send(method.to_sym) + 10 ].sort.last %>;
-      var upBound = <%= BloodProbe::RANGES[method.to_sym].last %>;
-      var lowBound = <%= BloodProbe::RANGES[method.to_sym].first %>;
-      var thisVal = <%= @blood_test.send(method.to_sym) %>;
+      var max = <%= [ BloodProbe::RANGES[method].last + 10, @blood_test.send(method) + 10 ].sort.last %>;
+      var upBound = <%= BloodProbe::RANGES[method].last %>;
+      var lowBound = <%= BloodProbe::RANGES[method].first %>;
+      var thisVal = <%= @blood_test.send(method) %>;
       // var lastVal = 35;
-      
+
       function colourSelect(i) {
         if (i == 0 || i == 2) { return '#990000'; }
         else if (i == 1) { return '#009900'; }
         else { return 'rgba(0,0,0,0)'; }
       };
-      
+
       function borderSelect(d,i) {
         if (i < 3) { return 'none'; }
         else if (i == 3) {
@@ -57,7 +57,7 @@
           return '4px solid rgba(255, 255, 255, 0.4)';
         }
       };
-      
+
       d3.selectAll('#bar-<%= method %> div')
         .data([max, upBound, lowBound, thisVal])
         .style("background-color", function(d,i) { return colourSelect(i) })

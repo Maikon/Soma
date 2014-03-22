@@ -18,7 +18,7 @@ class BloodTest < MedicalTest
   end
 
   def self.legend_as_json
-    BloodProbe::TEST_NAMES.inject({}) do |hash, method|
+    BloodTestsHelper::TEST_NAMES.inject({}) do |hash, method|
       hash[method] = { name: BloodProbe::HEADERS[method], fullname: BloodProbe::FULLNAMES[method], unit: BloodTestsHelper::UNITS[method], min: BloodProbe::RANGES[method].last, max: BloodProbe::RANGES[method].first }
       hash
     end

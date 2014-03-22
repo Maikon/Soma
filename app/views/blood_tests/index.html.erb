@@ -9,8 +9,8 @@
     </tr>
     <tr>
       <th></th>
-      <% methods.each do |method| %>
-        <th><%= BloodTestsHelper::UNITS[method.to_sym] %></th>
+      <% BloodTestsHelper::TEST_NAMES.each do |method| %>
+        <th><%= BloodTestsHelper::UNITS[method] %></th>
       <% end %>
       <th></th>
     </tr>
@@ -19,7 +19,7 @@
   <% @blood_tests.each do |blood_test| %>
     <tr>
       <td><%= link_to blood_test.taken_on.strftime("%d %b %Y"), blood_test_path(blood_test) %></td>
-      <% methods.each do |method| %>
+      <% BloodTestsHelper::TEST_NAMES.each do |method| %>
         <td <%= class_for(blood_test, method) %>>
           <%= value_for(blood_test, method) %>
         </td>
