@@ -6,7 +6,7 @@ class BloodTest < MedicalTest
   end
 
   def self.prepare_for_json(method)
-    order('taken_on ASC').map do |test| 
+    order('taken_on ASC').map do |test|
       if method == "crp"
           old_result = test.send(method.to_sym)
           new_result = old_result.gsub("<","").to_f if !old_result.empty?
@@ -19,7 +19,7 @@ class BloodTest < MedicalTest
 
   def self.legend_as_json
     BloodProbe::TEST_NAMES.inject({}) do |hash, method|
-      hash[method] = { name: BloodProbe::HEADERS[method], fullname: BloodProbe::FULLNAMES[method], unit: BloodProbe::UNITS[method], min: BloodProbe::RANGES[method].last, max: BloodProbe::RANGES[method].first }
+      hash[method] = { name: BloodProbe::HEADERS[method], fullname: BloodProbe::FULLNAMES[method], unit: BloodTestsHelper::UNITS[method], min: BloodProbe::RANGES[method].last, max: BloodProbe::RANGES[method].first }
       hash
     end
   end
@@ -41,7 +41,7 @@ class BloodTest < MedicalTest
     all = {}
     @methods.each do |method|
       all[method.to_sym] = prepare_for_json(method)
-    end  
+    end
     return all.to_json
   end
 

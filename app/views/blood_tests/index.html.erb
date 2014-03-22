@@ -9,8 +9,8 @@
     </tr>
     <tr>
       <th></th>
-      <% units.each do |unit| %>
-        <th><%= unit.html_safe %></th>
+      <% methods.each do |method| %>
+        <th><%= BloodTestsHelper::UNITS[method.to_sym] %></th>
       <% end %>
       <th></th>
     </tr>
