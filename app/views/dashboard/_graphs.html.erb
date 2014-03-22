@@ -78,7 +78,7 @@ data.forEach(function (d) {
 // Scale the range of the data
 x.domain([data[0].date, data[data.length - 1].date]);
 y.domain([d3.min(data, function (d) {
-    if (d.result-2 > minLimit) {
+    if (d.result-2 > minLimit-2) {
         return minLimit - 2;
         }
     else {
