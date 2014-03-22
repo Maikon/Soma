@@ -9,7 +9,7 @@ class BloodTest < MedicalTest
     order('taken_on ASC').map do |test|
       result = test.send(method)
       if method == :crp && result.is_a?(String)
-          result = result.gsub("<","").to_i unless result.nil? || result.empty?
+        result = result.gsub("<","").to_i unless result.nil? || result.empty?
       end
       { date: test.taken_on, result: result }
     end.reject { |test| test[:result].nil?|| test[:result]==''}
@@ -17,7 +17,7 @@ class BloodTest < MedicalTest
 
   def self.legend_as_json
     BloodTestsHelper::TEST_NAMES.inject({}) do |hash, method|
-      hash[method] = { name: BloodTestsHelper::HEADERS[method], fullname: BloodTestsHelper::FULLNAMES[method], unit: BloodTestsHelper::UNITS[method], min: BloodProbe::RANGES[method].last, max: BloodProbe::RANGES[method].first }
+      hash[method] = { name: BloodTestsHelper::HEADERS[method], fullname: BloodTestsHelper::FULLNAMES[method], unit: BloodTestsHelper::UNITS[method], min: BloodProbe::RANGES[method].first, max: BloodProbe::RANGES[method].last }
       hash
     end
   end

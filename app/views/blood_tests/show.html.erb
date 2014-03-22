@@ -35,7 +35,7 @@
 
 <script src="http://d3js.org/d3.v3.js"></script>
 <% BloodTestsHelper::TEST_NAMES.each do |method| %>
-  <% unless @probe.within_range?(method) || @probe.empty_value?(method) || method == 'crp' %>
+  <% unless @probe.within_range?(method) || @probe.empty_value?(method) || method == :crp %>
     <script>
       var max = <%= [ BloodProbe::RANGES[method].last + 10, @blood_test.send(method) + 10 ].sort.last %>;
       var upBound = <%= BloodProbe::RANGES[method].last %>;
