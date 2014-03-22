@@ -24,12 +24,16 @@ describe BloodTest do
   context "Must return JSON data for" do
     it "Hb" do
       expect(BloodTest).to receive(:order).and_return ([test])
-      expect(BloodTest.as_json(:hb)). to eq("[{\"date\":\"2013-03-11\",\"result\":12.7}]")
+      expect(BloodTest.as_json(:hb)).to eq("[{\"date\":\"2013-03-11\",\"result\":12.7}]")
     end 
 
     it "should not return data for empty result" do
       expect(BloodTest).to receive(:order).and_return ([test, test_with_crp])
-      expect(BloodTest.as_json(:crp)). to eq("[{\"date\":\"2013-03-11\",\"result\":3}]")
+      expect(BloodTest.as_json(:crp)).to eq("[{\"date\":\"2013-03-11\",\"result\":3}]")
+    end
+
+    it "the legend" do
+      expect(BloodTest.legend_as_json).to eq({:hb=>{:name=>"Hb", :fullname=>"Haemoglobin", :unit=>"g/L", :min=>16, :max=>11.5}, :mcv=>{:name=>"MCV", :fullname=>"Mean Cell Volume", :unit=>"fL", :min=>100, :max=>80}, :wbc=>{:name=>"WBC", :fullname=>"White Blood Cells", :unit=>"x10<sup>9</sup>/L", :min=>11, :max=>4}, :platelets=>{:name=>"Platelets", :fullname=>"Platelets", :unit=>"x10<sup>9</sup>/L", :min=>440, :max=>140}, :neutrophils=>{:name=>"Neutrophils", :fullname=>"Neutrophils", :unit=>"x10<sup>9</sup>/L", :min=>7.5, :max=>2.5}, :lymphocytes=>{:name=>"Lymphocytes", :fullname=>"Lymphocytes", :unit=>"x10<sup>9</sup>/L", :min=>4.8, :max=>1.0}, :alt=>{:name=>"ALT", :fullname=>"Alanine Aminotransferase", :unit=>"µkat/L", :min=>40, :max=>10}, :alk_phos=>{:name=>"Alk Phos", :fullname=>"Alkaline Phosphates", :unit=>"U/L", :min=>147, :max=>44}, :creatinine=>{:name=>"Creatinine", :fullname=>"Creatinine", :unit=>"μmol/L", :min=>98, :max=>50}, :esr=>{:name=>"ESR", :fullname=>"Erythrocyte Sedimentation Rate", :unit=>"mm/hr", :min=>26, :max=>0}, :crp=>{:name=>"CRP", :fullname=>"C Reactive Protein", :unit=>"mg/L", :min=>5, :max=>0}})
     end
   end
 end

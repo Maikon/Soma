@@ -10,6 +10,10 @@ Given(/^there is a test result already$/) do
   enter_blood('01 Jan 2014')
 end
 
+Given(/^I am on the legend page$/) do
+  visit blood_tests_legend_path
+end
+
 When(/^I enter the results$/) do
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: '01/01/2014'
