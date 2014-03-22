@@ -8,7 +8,7 @@
       <% BloodTestsHelper::TEST_NAMES.each do |method| %>
         <% unless @probe.within_range?(method) || @probe.empty_value?(method) %>
           <li>
-            <span class="text"><%= BloodProbe::HEADERS[method] %>: <%= @blood_test.send(method) %></span>
+            <span class="text"><%= BloodTestsHelper::HEADERS[method] %>: <%= @blood_test.send(method) %></span>
             <div id="bar-<%= method %>" class="bar-chart">
               <div></div>
               <div></div>
@@ -27,7 +27,7 @@
     </header>
     <% BloodTestsHelper::TEST_NAMES.each do |method| %>
       <% if @probe.within_range?(method) && !@probe.empty_value?(method) %>
-        <p><%= BloodProbe::HEADERS[method] %>: <%= @blood_test.send(method) %></p>
+        <p><%= BloodTestsHelper::HEADERS[method] %>: <%= @blood_test.send(method) %></p>
       <% end %>
     <% end %>
   </section>

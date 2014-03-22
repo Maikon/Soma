@@ -2,15 +2,16 @@
 <table class="main-content">
   <thead>
     <tr>
-      <% headers.each do |header| %>
-        <th><%= header %></th>
+    <<th>Taken on</th>
+      <% BloodTestsHelper::TEST_NAMES.each do |method| %>
+        <th><%= BloodTestsHelper::HEADERS[method] %></th>
       <% end %>
       <th></th>
     </tr>
     <tr>
       <th></th>
       <% BloodTestsHelper::TEST_NAMES.each do |method| %>
-        <th><%= BloodTestsHelper::UNITS[method] %></th>
+        <th><%= BloodTestsHelper::UNITS[method].html_safe %></th>
       <% end %>
       <th></th>
     </tr>

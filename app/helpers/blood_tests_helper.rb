@@ -39,21 +39,27 @@ UNITS = {
 
   TEST_NAMES = [:hb,:mcv,:wbc,:platelets,:neutrophils,:lymphocytes,:alt,:alk_phos,:creatinine,:esr,:crp]
 
-  def headers
-    ["Taken on",
-      "Hb",
-      "MCV",
-      "WBC",
-      "Platelets",
-      "Neutrophils",
-      "Lymphocytes",
-      "ALT",
-      "Alk Phos",
-      "Creatinine",
-      "ESR",
-      "CRP"
-    ]
-  end
+
+  HEADERS = {
+    hemoglobin:                     "Hb",
+    hb:                             "Hb",
+    mean_cell_volume:               "MCV",
+    mcv:                            "MCV",
+    white_blood_cells:              "WBC",
+    wbc:                            "WBC",
+    platelets:                      "Platelets",
+    neutrophils:                    "Neutrophils",
+    lymphocytes:                    "Lymphocytes",
+    alanine_aminotransferase:       "ALT",
+    alt:                            "ALT",
+    alkaline_phosphatase:           "Alk Phos",
+    alk_phos:                       "Alk Phos",
+    creatinine:                     "Creatinine",
+    erythrocyte_sedimentation_rate: "ESR",
+    esr:                            "ESR",
+    c_reactive_protein:             "CRP",
+    crp:                            "CRP"
+  }
 
   def class_for(test, method)
     return "class=empty-value" if has_empty_value?(test, method)
