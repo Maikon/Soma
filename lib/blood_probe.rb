@@ -49,28 +49,6 @@ class BloodProbe < Struct.new(:blood_test)
     crp:                            C_REACTIVE_PROTEIN_RANGE
   }
 
-  FULLNAMES = {
-    hemoglobin:                     "Haemoglobin",
-    hb:                             "Haemoglobin",
-    mean_cell_volume:               "Mean Cell Volume",
-    mcv:                            "Mean Cell Volume",
-    white_blood_cells:              "White Blood Cells",
-    wbc:                            "White Blood Cells",
-    platelets:                      "Platelets",
-    neutrophils:                    "Neutrophils",
-    lymphocytes:                    "Lymphocytes",
-    alanine_aminotransferase:       "Alanine Aminotransferase",
-    alt:                            "Alanine Aminotransferase",
-    alkaline_phosphatase:           "Alkaline Phosphates",
-    alk_phos:                       "Alkaline Phosphates",
-    creatinine:                     "Creatinine",
-    erythrocyte_sedimentation_rate: "Erythrocyte Sedimentation Rate",
-    esr:                            "Erythrocyte Sedimentation Rate",
-    c_reactive_protein:             "C Reactive Protein",
-    crp:                            "C Reactive Protein"
-  }
-
-
   METHODS = {
     hemoglobin: HEMOGLOBIN_TEST, hb: HEMOGLOBIN_TEST,
     mean_cell_volume: MEAN_CELL_VOLUME_TEST, mcv: MEAN_CELL_VOLUME_TEST,
