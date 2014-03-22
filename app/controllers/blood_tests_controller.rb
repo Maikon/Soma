@@ -46,12 +46,16 @@ class BloodTestsController < ApplicationController
     end
   end
 
-  def results
+  def results_by_testname
     render json: BloodTest.as_json(params[:name])
   end
 
   def legend
     render json: BloodTest.legend_as_json
+  end
+
+  def all_results
+    render json: BloodTest.all_as_json
   end
 
   private
