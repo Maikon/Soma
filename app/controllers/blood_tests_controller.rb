@@ -46,6 +46,17 @@ class BloodTestsController < ApplicationController
     end
   end
 
+  def create_remote
+    @blood_test = BloodTest.new(blood_test_params)
+    if @blood_test.save
+      # redirect_to blood_test_path(@blood_test)
+      render json: @blood_test.to_json
+    else
+      flash.now[:errors] = @blood_test.error_messages
+      render action: 'new'
+    end
+  end
+
   def results_by_testname
     render json: BloodTest.as_json(params[:name])
   end

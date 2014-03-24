@@ -4,6 +4,7 @@ Soma::Application.routes.draw do
   get 'blood-tests' => 'blood_tests#index', as: :blood_tests
   get 'blood-tests/new' => 'blood_tests#new', as: :new_blood_test
   post 'blood-tests' => 'blood_tests#create'
+  post 'blood-tests/remote' => 'blood_tests#create_remote', as: :create_remote_blood_test
   get 'blood-tests/legend'=> 'blood_tests#legend', as: :blood_tests_legend
   get 'blood-tests/results'=> 'blood_tests#all_results', as: :blood_tests_all_results
   get 'blood-tests/results/:name'=> 'blood_tests#results_by_testname'
