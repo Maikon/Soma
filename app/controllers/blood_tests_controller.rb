@@ -51,7 +51,6 @@ class BloodTestsController < ApplicationController
   def create_remote
     @blood_test = BloodTest.new_from_remote(params[:blood_test])
     if @blood_test.save
-      # redirect_to blood_test_path(@blood_test)
       render json: @blood_test.to_json
     else
       flash.now[:errors] = @blood_test.error_messages
@@ -64,7 +63,12 @@ class BloodTestsController < ApplicationController
   end
 
   def legend
-    render json: BloodTest.legend_as_json
+    app = App.find_by_token(params[:token])
+    if app
+      render json: BloodTest.legend_as_json
+    else
+      render json: "NOPE"
+    end
   end
 
   def all_results

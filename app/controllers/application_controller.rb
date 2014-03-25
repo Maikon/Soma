@@ -6,18 +6,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def auth
-    puts '&' * 80
-    puts params[:key]
-    puts '&' * 80
-
-    challenge = Digest::HMAC.hexdigest("asoidfhlaiorluvhtniur2", params[:key], Digest::SHA1)
-    # session[:app]= the app
-    session[:token] = Digest::HMAC.hexdigest(challenge, App.find_by_key(params[:key]).secret, Digest::SHA1)
-    puts '*' * 80
-    puts '*' * 80
-    puts session[:token]
-    puts '*' * 80
-    puts '*' * 80
-    render json: {challenge: challenge}
+    begin
+      challenge = Digest::HMAC.hexdigest("asoidfhlaiorluvhtniur2", params[:key], Digest::SHA1)
+      app = App.find_by_key(params[:key])
+      app.token = Digest::HMAC.hexdigest(challenge, app.secret, Digest::SHA1)
+      app.save
+      render json: {challenge: challenge}
+    rescue Exception => e
+      render json: {message: "Please make sure to register your application"}, :status => :unauthorized
+    end
+    
   end
 end
