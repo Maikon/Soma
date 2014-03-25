@@ -1,4 +1,6 @@
 class BloodTestsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def new
     @blood_test = BloodTest.new
   end
