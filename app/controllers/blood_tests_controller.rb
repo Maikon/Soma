@@ -47,7 +47,7 @@ class BloodTestsController < ApplicationController
   end
 
   def create_remote
-    @blood_test = BloodTest.new(blood_test_params)
+    @blood_test = BloodTest.new_from_remote(params[:blood_test])
     if @blood_test.save
       # redirect_to blood_test_path(@blood_test)
       render json: @blood_test.to_json
