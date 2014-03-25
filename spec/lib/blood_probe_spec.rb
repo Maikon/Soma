@@ -2,15 +2,11 @@ require 'blood_probe'
 
 describe BloodProbe do
   let(:blood_test) do
-    BloodTest.new(taken_on: "2013-03-11", 
-      hb: 12.7, mcv: 88.0, 
-      wbc: 7.0, platelets: 278.0, neutrophils: 4.4, 
-      lymphocytes: 2.0, alt: 12.0, alk_phos: 45, 
-      creatinine: 50.0, esr: 9.0, crp: '5')
+    BloodTest.new(test_data('5'))
   end
 
   let(:probe) { BloodProbe.new(blood_test) }
-  
+
   context 'checking ranges for' do
     it 'hemoglobin' do
       expect(probe.within_range?(:hemoglobin)).to be_true
@@ -21,7 +17,7 @@ describe BloodProbe do
     end
 
     it 'hemoglobin out of range' do
-      blood_test.hb= 11
+      blood_test.hb = 11
       expect(probe.within_range?(:hemoglobin)).to be_false
     end
 
@@ -34,7 +30,7 @@ describe BloodProbe do
     end
 
     it 'mean cell volume out of range' do
-      blood_test.mcv= 70
+      blood_test.mcv = 70
       expect(probe.within_range?(:mcv)).to be_false
     end
 
@@ -47,7 +43,7 @@ describe BloodProbe do
     end
 
     it 'white blood cells out of range' do
-      blood_test.wbc= 12
+      blood_test.wbc = 12
       expect(probe.within_range?(:white_blood_cells)).to be_false
     end
 
@@ -56,7 +52,7 @@ describe BloodProbe do
     end
 
     it 'platelets out of range' do
-      blood_test.platelets= 12
+      blood_test.platelets = 12
       expect(probe.within_range?(:platelets)).to be_false
     end
 
@@ -65,7 +61,7 @@ describe BloodProbe do
     end
 
     it 'neutrophils out of range' do
-      blood_test.neutrophils= 1
+      blood_test.neutrophils = 1
       expect(probe.within_range?(:neutrophils)).to be_false
     end
 
@@ -74,7 +70,7 @@ describe BloodProbe do
     end
 
     it 'lymphocytes out of range' do
-      blood_test.lymphocytes= 5
+      blood_test.lymphocytes = 5
       expect(probe.within_range?(:lymphocytes)).to be_false
     end
 
@@ -87,7 +83,7 @@ describe BloodProbe do
     end
 
     it 'Alanine Aminotransferase out of range' do
-      blood_test.alt= 50
+      blood_test.alt = 50
       expect(probe.within_range?(:alanine_aminotransferase)).to be_false
     end
 
@@ -100,7 +96,7 @@ describe BloodProbe do
     end
 
     it 'Alkaline phosphatase out of range' do
-      blood_test.alk_phos= 40
+      blood_test.alk_phos = 40
       expect(probe.within_range?(:alkaline_phosphatase)).to be_false
     end
 
@@ -109,7 +105,7 @@ describe BloodProbe do
     end
 
     it 'Creatinine out of range' do
-      blood_test.creatinine= 40
+      blood_test.creatinine = 40
       expect(probe.within_range?(:creatinine)).to be_false
     end
 
@@ -122,7 +118,7 @@ describe BloodProbe do
     end
 
     it 'erythrocyte sedimentation rate out of range' do
-      blood_test.esr=28
+      blood_test.esr = 28
       expect(probe.within_range?(:erythrocyte_sedimentation_rate)).to be_false
     end
 

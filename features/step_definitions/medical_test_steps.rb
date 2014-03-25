@@ -18,39 +18,12 @@ Given(/^I am on the json page for all results$/) do
   visit blood_tests_all_results_path
 end
 
-
 When(/^I enter the results$/) do
-  visit new_blood_test_path
-  fill_in 'blood_test[taken_on]', with: '01/01/2014'
-  fill_in 'blood_test[hb]', with: '13'            # In range
-  fill_in 'blood_test[mcv]', with: '88'           # In range
-  fill_in 'blood_test[wbc]', with: '7.0'          # In range
-  fill_in 'blood_test[platelets]', with: '278'    # In range
-  fill_in 'blood_test[neutrophils]', with: '4.4'  # In range
-  fill_in 'blood_test[lymphocytes]', with: '2.2'  # In range
-  fill_in 'blood_test[alt]', with: '103'          # Out of range
-  fill_in 'blood_test[alk_phos]', with: '67'      # In range
-  fill_in 'blood_test[creatinine]', with: '50'    # In range
-  fill_in 'blood_test[esr]', with: '9'            # In range
-  fill_in 'blood_test[crp]', with: '<5'           # In range
-  click_button 'submit'
+  enter_blood('01/01/2014', '67')
 end
 
 When(/^I (?:enter|have entered) a set of results(?:| that includes an empty value)$/) do
-  visit new_blood_test_path
-  fill_in 'blood_test[taken_on]', with: '01/01/2014'
-  fill_in 'blood_test[hb]', with: '13'
-  fill_in 'blood_test[mcv]', with: '88'
-  fill_in 'blood_test[wbc]', with: '7.0'
-  fill_in 'blood_test[platelets]', with: '278'
-  fill_in 'blood_test[neutrophils]', with: '4.4'
-  fill_in 'blood_test[lymphocytes]', with: '2.2'
-  fill_in 'blood_test[alt]', with: '103'
-  fill_in 'blood_test[alk_phos]', with: ''
-  fill_in 'blood_test[creatinine]', with: '50'
-  fill_in 'blood_test[esr]', with: '9'
-  fill_in 'blood_test[crp]', with: '<5'
-  click_button 'submit'
+  enter_blood('01/01/2014', '')
 end
 
 When(/^I add a new blood test$/) do
@@ -69,7 +42,7 @@ When(/^I click "(.*?)"$/) do |link|
 end
 
 When(/^I click on the date for a blood test$/) do
-  click_link "01 Jan 2014"
+  click_link '01 Jan 2014'
 end
 
 Then(/^I should be able to see the json data$/) do
@@ -168,10 +141,10 @@ Then(/^I should be on the report page for that blood test$/) do
 end
 
 Then(/^I should not see the empty result in the report$/) do
-  expect(page).not_to have_content("alk phos")
+  expect(page).not_to have_content('alk phos')
 end
 
-def enter_blood(date)
+def enter_blood(date, alk_phos = '67')
   visit new_blood_test_path
   fill_in 'blood_test[taken_on]', with: date
   fill_in 'blood_test[hb]', with: '13'
@@ -181,7 +154,7 @@ def enter_blood(date)
   fill_in 'blood_test[neutrophils]', with: '4.4'
   fill_in 'blood_test[lymphocytes]', with: '2.2'
   fill_in 'blood_test[alt]', with: '103'
-  fill_in 'blood_test[alk_phos]', with: '67'
+  fill_in 'blood_test[alk_phos]', with: alk_phos
   fill_in 'blood_test[creatinine]', with: '50'
   fill_in 'blood_test[esr]', with: '9'
   fill_in 'blood_test[crp]', with: '<5'

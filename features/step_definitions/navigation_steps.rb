@@ -7,19 +7,19 @@ Given(/^I visit the JSON page for "(.*?)"$/) do |link|
 end
 
 Then(/^I should see JSON data$/) do
-  expect(page).to have_content("date")
-  expect(page).to have_content("2014-01-01")
-  expect(page).to have_content("result")
-  expect(page).to have_content("13")
+  expect(page).to have_content('date')
+  expect(page).to have_content('2014-01-01')
+  expect(page).to have_content('result')
+  expect(page).to have_content('13')
 end
 
 Then(/^I can go to a new blood test form$/) do
-  click_link "Enter new blood test results"
+  click_link 'Enter new blood test results'
   expect(current_path).to eq(new_blood_test_path)
 end
 
 Then(/^I can go to my existing results$/) do
-  click_link "See blood test results table"
+  click_link 'See blood test results table'
   expect(current_path).to eq(blood_tests_path)
 end
 
