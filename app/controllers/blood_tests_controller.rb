@@ -1,4 +1,6 @@
 class BloodTestsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def new
     @blood_test = BloodTest.new
   end
@@ -46,12 +48,27 @@ class BloodTestsController < ApplicationController
     end
   end
 
+  def create_remote
+    @blood_test = BloodTest.new_from_remote(params[:blood_test])
+    if @blood_test.save
+      render json: @blood_test.to_json
+    else
+      flash.now[:errors] = @blood_test.error_messages
+      render action: 'new'
+    end
+  end
+
   def results_by_testname
     render json: BloodTest.as_json(params[:name])
   end
 
   def legend
-    render json: BloodTest.legend_as_json
+    app = App.find_by_token(params[:token])
+    if app
+      render json: BloodTest.legend_as_json
+    else
+      render json: "NOPE"
+    end
   end
 
   def all_results

@@ -6,6 +6,7 @@ gem 'rails', '4.0.3'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'httparty'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -39,6 +40,7 @@ group :development do
   gem 'database_cleaner'
   gem 'guard'
   gem 'poltergeist'
+  gem 'rack-test'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

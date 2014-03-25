@@ -30,6 +30,22 @@ class BloodTest < MedicalTest
     return all.to_json
   end
 
+  def self.new_from_remote(options)
+    BloodTest.new(
+      :taken_on => options[:taken_on],
+      :hb  => options[:hb] ,
+      :mcv  => options[:mcv],
+      :wbc  => options[:wbc],
+      :platelets  => options[:platelets],
+      :neutrophils  => options[:neutrophils],
+      :lymphocytes  => options[:lymphocytes],
+      :alt  => options[:alt],
+      :alk_phos  => options[:alk_phos],
+      :creatinine  => options[:creatinine],
+      :esr  => options[:esr],
+      :crp  => options[:crp])
+  end
+
   def error_messages
     errors.inject([]) do |array, (attr, message)|
       array << message
