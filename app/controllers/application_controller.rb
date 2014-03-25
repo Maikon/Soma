@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def auth
-    challenge = Digest::HMAC.hexdigest("data", params[:key], Digest::SHA1)
+    puts '&' * 80
+    puts params[:key]
+    puts '&' * 80
+
+    challenge = Digest::HMAC.hexdigest("asoidfhlaiorluvhtniur2", params[:key], Digest::SHA1)
     # session[:app]= the app
-    session[:token] = Digest::HMAC.hexdigest(challenge, "this is the apps secret key", Digest::SHA1)
+    session[:token] = Digest::HMAC.hexdigest(challenge, App.find_by_key(params[:key]).secret, Digest::SHA1)
     puts '*' * 80
     puts '*' * 80
     puts session[:token]
