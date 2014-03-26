@@ -37,26 +37,37 @@ class BloodTest < MedicalTest
   end
 
   def self.all_dangerous_results
-    bad_results = {}
+    @out_of_range_results = []
+    get_out_of_range_results
+    @out_of_range_results.to_json
+  end
 
+  def self.get_out_of_range_results
     BloodTest.order('taken_on DESC').each do |blood_test|
-
-      probe = BloodProbe.new(blood_test)
-
-      array_of_bad_results = BloodTestsHelper::TEST_NAMES.select do |method|
-        !blood_test[method].is_a?(String) && !blood_test[method].nil? && !probe.within_range?(method.to_sym)
-      end
-
-      hash_of_bad_results = {}
-
-      array_of_bad_results.each do |method|
-        hash_of_bad_results[method]= blood_test.send(method.to_sym)
-      end
-
-      bad_results[blood_test.taken_on] = hash_of_bad_results
+      get_id_and_date(blood_test)
+      start_probe(blood_test)
+      @out_of_range_results << @bad_result
     end
-    delete_empty_hashes(bad_results)
-    bad_results.to_json
+  end
+
+  def self.start_probe(blood_test)
+    probe = BloodProbe.new(blood_test)
+      BloodTestsHelper::TEST_NAMES.each do |method|
+        check_crp(blood_test, method)
+        @bad_result[method] = blood_test.send(method) if !probe.within_range?(method.to_sym) && !blood_test[method].nil? && !blood_test[method].is_a?(String)
+      end
+  end
+
+  def self.check_crp(blood_test, method)
+    if method == :crp
+      blood_test.crp.gsub('<', '').to_i unless blood_test.crp.nil? || blood_test.crp.is_a?(Fixnum)
+    end
+  end
+
+  def self.get_id_and_date(blood_test)
+    @bad_result = {}
+    @bad_result['id'] = blood_test.id
+    @bad_result['taken_on'] = blood_test.taken_on
   end
 
   def self.new_from_remote(options)
@@ -82,6 +93,6 @@ class BloodTest < MedicalTest
   end
 
   def self.delete_empty_hashes(hash)
-    hash.delete_if { |key, value| value == {} }
+    hash.delete_if { |key, value| value == {} || value == nil }
   end
 end

@@ -45,7 +45,7 @@ describe BloodTest do
 
     it 'bad results' do
       expect(BloodTest).to receive(:order).any_number_of_times.and_return([test_with_crp_as_fixnum])
-      expect(BloodTest.all_dangerous_results). to eq("{\"2013-03-11\":{\"crp\":7}}")
+      expect(BloodTest.all_dangerous_results). to eq("[{\"id\":null,\"taken_on\":\"2013-03-11\",\"crp\":7}]")
     end
   end
 end
