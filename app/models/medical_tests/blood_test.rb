@@ -55,7 +55,7 @@ class BloodTest < MedicalTest
 
       bad_results[blood_test.taken_on] = hash_of_bad_results
     end
-
+    delete_empty_hashes(bad_results)
     bad_results.to_json
   end
 
@@ -81,6 +81,7 @@ class BloodTest < MedicalTest
     end
   end
 
-  def array_of_bad_results
+  def self.delete_empty_hashes(hash)
+    hash.delete_if { |key, value| value == {} }
   end
 end
