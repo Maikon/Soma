@@ -75,6 +75,10 @@ class BloodTestsController < ApplicationController
     render json: BloodTest.all_as_json
   end
 
+  def all_dangerous_results
+    render json: BloodTest.all_dangerous_results
+  end
+
   private
 
   def blood_test_params

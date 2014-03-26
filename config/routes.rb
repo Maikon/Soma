@@ -9,6 +9,7 @@ Soma::Application.routes.draw do
   post 'blood-tests/remote' => 'blood_tests#create_remote', as: :create_remote_blood_test
   get 'blood-tests/legend'=> 'blood_tests#legend', as: :blood_tests_legend
   get 'blood-tests/results'=> 'blood_tests#all_results', as: :blood_tests_all_results
+  get 'blood-tests/dangerous_results'=> 'blood_tests#all_dangerous_results'
   get 'blood-tests/results/:name'=> 'blood_tests#results_by_testname'
   get 'blood-tests/:id' => 'blood_tests#show', as: :blood_test
   get 'blood-tests/:id/edit' => 'blood_tests#edit', as: :edit_blood_test

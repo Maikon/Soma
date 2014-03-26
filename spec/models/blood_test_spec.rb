@@ -10,7 +10,7 @@ describe BloodTest do
   end
 
   let(:test_with_crp_as_fixnum) do
-    BloodTest.new(test_data(3))
+    BloodTest.new(test_data(7))
   end
 
   it 'should be able to return nicely formatted messages' do
@@ -31,7 +31,7 @@ describe BloodTest do
 
     it 'CRP even if the result is a fixnum' do
       expect(BloodTest).to receive(:order).and_return([test_with_crp_as_fixnum])
-      expect(BloodTest.as_json(:crp)).to eq("[{\"date\":\"2013-03-11\",\"result\":3}]")
+      expect(BloodTest.as_json(:crp)).to eq("[{\"date\":\"2013-03-11\",\"result\":7}]")
     end
 
     it 'the legend' do
@@ -41,6 +41,11 @@ describe BloodTest do
     it 'all' do
       expect(BloodTest).to receive(:order).any_number_of_times.and_return([test])
       expect(BloodTest.all_as_json). to eq("{\"hb\":[{\"date\":\"2013-03-11\",\"result\":12.7}],\"mcv\":[{\"date\":\"2013-03-11\",\"result\":88.0}],\"wbc\":[{\"date\":\"2013-03-11\",\"result\":7.0}],\"platelets\":[{\"date\":\"2013-03-11\",\"result\":278.0}],\"neutrophils\":[{\"date\":\"2013-03-11\",\"result\":4.4}],\"lymphocytes\":[{\"date\":\"2013-03-11\",\"result\":2.0}],\"alt\":[{\"date\":\"2013-03-11\",\"result\":12.0}],\"alk_phos\":[{\"date\":\"2013-03-11\",\"result\":45.0}],\"creatinine\":[{\"date\":\"2013-03-11\",\"result\":50.0}],\"esr\":[{\"date\":\"2013-03-11\",\"result\":9.0}],\"crp\":[]}")
+    end
+
+    it 'bad results' do
+      expect(BloodTest).to receive(:order).any_number_of_times.and_return([test_with_crp_as_fixnum])
+      expect(BloodTest.all_dangerous_results). to eq("{\"2013-03-11\":{\"crp\":7}}")
     end
   end
 end

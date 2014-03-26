@@ -36,6 +36,29 @@ class BloodTest < MedicalTest
     all.to_json
   end
 
+  def self.all_dangerous_results
+    bad_results = {}
+
+    BloodTest.order('taken_on DESC').each do |blood_test|
+
+      probe = BloodProbe.new(blood_test)
+
+      array_of_bad_results = BloodTestsHelper::TEST_NAMES.select do |method|
+        !blood_test[method].is_a?(String) && !blood_test[method].nil? && !probe.within_range?(method.to_sym)
+      end
+
+      hash_of_bad_results = {}
+
+      array_of_bad_results.each do |method|
+        hash_of_bad_results[method]= blood_test.send(method.to_sym)
+      end
+
+      bad_results[blood_test.taken_on] = hash_of_bad_results
+    end
+
+    bad_results.to_json
+  end
+
   def self.new_from_remote(options)
     BloodTest.new(
       :taken_on => options[:taken_on],
@@ -56,5 +79,8 @@ class BloodTest < MedicalTest
     errors.inject([]) do |array, (attr, message)|
       array << message
     end
+  end
+
+  def array_of_bad_results
   end
 end
