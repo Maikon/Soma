@@ -15,6 +15,11 @@ Soma::Application.routes.draw do
   get 'blood-tests/:id/edit' => 'blood_tests#edit', as: :edit_blood_test
   patch 'blood-tests/:id' => 'blood_tests#update', as: :update_blood_test
   delete 'blood-tests/:id' => 'blood_tests#destroy', as: :delete_blood_test
+
+  get 'blood-tests/users/:id' => 'blood_tests#user_index'
+  get 'blood-tests/users/:id/dangerous-results' => 'blood_tests#user_dangerous_results'
+  get 'blood-tests/users/:id/:name' => 'blood_tests#user_results_by_testname'
+
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
 
