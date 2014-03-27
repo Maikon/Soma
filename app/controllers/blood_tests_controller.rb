@@ -48,6 +48,12 @@ class BloodTestsController < ApplicationController
     end
   end
 
+  def user_index
+    @user = User.find_by_app_user_id(params[:id])
+    @blood_tests = @user.blood_tests.order('taken_on DESC')
+    render json: @blood_tests.to_json
+  end
+
   def create_remote
     @blood_test = BloodTest.new_from_remote(params[:blood_test])
     if @blood_test.save
@@ -60,6 +66,11 @@ class BloodTestsController < ApplicationController
 
   def results_by_testname
     render json: BloodTest.as_json(params[:name])
+  end
+
+  def user_results_by_testname
+    user = User.find_by_app_user_id(params[:id])
+    render json: BloodTest.as_json_for_user(params[:name], user)
   end
 
   def legend
@@ -77,6 +88,11 @@ class BloodTestsController < ApplicationController
 
   def all_dangerous_results
     render json: BloodTest.all_dangerous_results
+  end
+
+  def user_dangerous_results
+    user = User.find_by_app_user_id(params[:id])
+    render json: BloodTest.all_dangerous_results_for_user(user)
   end
 
   private
