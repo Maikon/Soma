@@ -1,5 +1,6 @@
 class BloodTest < MedicalTest
   validates :taken_on, presence: true, uniqueness: true
+  belongs_to :user
 
   def self.as_json(method)
     prepare_for_json(method.to_sym).to_json
@@ -83,7 +84,8 @@ class BloodTest < MedicalTest
       :alk_phos  => options[:alk_phos],
       :creatinine  => options[:creatinine],
       :esr  => options[:esr],
-      :crp  => options[:crp])
+      :crp  => options[:crp],
+      :user => User.find_by_app_user_id(options[:app_user_id]))
   end
 
   def error_messages

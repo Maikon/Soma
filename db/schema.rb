@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327163251) do
+ActiveRecord::Schema.define(version: 20140327174859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140327163251) do
     t.float    "creatinine"
     t.float    "esr"
     t.string   "crp"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
