@@ -1,16 +1,5 @@
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <h1>SOMA</h1>
+<p> Soma is an api for tracking and managing your health. </p>
 
-<div id="tabs" class="main-content">
-  <ul>
-  <% blood_name_and_ranges.each_pair do |key, value| %>
-    <li><a href="#<%= key %>"><%= key %></a></li>
-  <% end %>
-  </ul>
-  <% blood_name_and_ranges.each_pair do |key, value| %>
-    <div id="<%= key %>">
-      <p><%= render "graphs", blood_name: key, blood_range: value %></p>
-    </div>
-  <% end %>
-</div>
+
 
