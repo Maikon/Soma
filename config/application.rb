@@ -26,6 +26,7 @@ module Soma
     # config.i18n.default_locale = :de
 
     config.autoload_paths += %W(#{config.root}/app/models/medical_tests)
+    config.assets.initialize_on_precompile = false
   end
 end
 require 'blood_probe'
